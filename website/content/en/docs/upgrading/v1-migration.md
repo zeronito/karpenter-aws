@@ -75,20 +75,20 @@ The upgrade guide will first require upgrading to your latest patch version prio
         --set webhook.port=8443
     ```
 {{% alert title="Note" color="warning" %}}
-If you receive a `label validation error` or `annotation validation error` consult the [troubleshooting guide]({{<ref "../troubleshooting/#helm-error-when-installing-the-karpenter-crd-chart" >}}) for steps to resolve. 
+If you receive a `label validation error` or `annotation validation error` consult the [troubleshooting guide]({{<ref "../troubleshooting/#helm-error-when-installing-the-karpenter-crd-chart" >}}) for steps to resolve.
 {{% /alert %}}
 
 {{% alert title="Note" color="warning" %}}
 
-As an alternative approach to updating the Karpenter CRDs conversion webhook configuration, you can patch the CRDs as follows: 
+As an alternative approach to updating the Karpenter CRDs conversion webhook configuration, you can patch the CRDs as follows:
 
-```bash 
+```bash
 export SERVICE_NAME=<karpenter webhook service name>
 export SERVICE_NAMESPACE=<karpenter webhook service namespace>
 export SERVICE_PORT=<karpenter webhook service port>
 # NodePools
 kubectl patch customresourcedefinitions nodepools.karpenter.sh -p "{\"spec\":{\"conversion\":{\"webhook\":{\"clientConfig\":{\"service\": {\"name\": \"${SERVICE_NAME}\", \"namespace\": \"${SERVICE_NAMESPACE}\", \"port\":${SERVICE_PORT}}}}}}}"
-# NodeClaims 
+# NodeClaims
 kubectl patch customresourcedefinitions nodeclaims.karpenter.sh -p "{\"spec\":{\"conversion\":{\"webhook\":{\"clientConfig\":{\"service\": {\"name\": \"${SERVICE_NAME}\", \"namespace\": \"${SERVICE_NAMESPACE}\", \"port\":${SERVICE_PORT}}}}}}}"
 # EC2NodeClass
 kubectl patch customresourcedefinitions ec2nodeclasses.karpenter.k8s.aws -p "{\"spec\":{\"conversion\":{\"webhook\":{\"clientConfig\":{\"service\": {\"name\": \"${SERVICE_NAME}\", \"namespace\": \"${SERVICE_NAMESPACE}\", \"port\":${SERVICE_PORT}}}}}}}"
@@ -142,20 +142,20 @@ kubectl patch customresourcedefinitions ec2nodeclasses.karpenter.k8s.aws -p "{\"
     ```
 
 {{% alert title="Note" color="warning" %}}
-If you receive a `label validation error` or `annotation validation error` consult the [troubleshooting guide]({{<ref "../troubleshooting/#helm-error-when-installing-the-karpenter-crd-chart" >}}) for steps to resolve. 
+If you receive a `label validation error` or `annotation validation error` consult the [troubleshooting guide]({{<ref "../troubleshooting/#helm-error-when-installing-the-karpenter-crd-chart" >}}) for steps to resolve.
 {{% /alert %}}
 
 {{% alert title="Note" color="warning" %}}
 
-As an alternative approach to updating the Karpenter CRDs conversion webhook configuration, you can patch the CRDs as follows: 
+As an alternative approach to updating the Karpenter CRDs conversion webhook configuration, you can patch the CRDs as follows:
 
-```bash 
+```bash
 export SERVICE_NAME=<karpenter webhook service name>
 export SERVICE_NAMESPACE=<karpenter webhook service namespace>
 export SERVICE_PORT=<karpenter webhook service port>
 # NodePools
 kubectl patch customresourcedefinitions nodepools.karpenter.sh -p "{\"spec\":{\"conversion\":{\"webhook\":{\"clientConfig\":{\"service\": {\"name\": \"${SERVICE_NAME}\", \"namespace\": \"${SERVICE_NAMESPACE}\", \"port\":${SERVICE_PORT}}}}}}}"
-# NodeClaims 
+# NodeClaims
 kubectl patch customresourcedefinitions nodeclaims.karpenter.sh -p "{\"spec\":{\"conversion\":{\"webhook\":{\"clientConfig\":{\"service\": {\"name\": \"${SERVICE_NAME}\", \"namespace\": \"${SERVICE_NAMESPACE}\", \"port\":${SERVICE_PORT}}}}}}}"
 # EC2NodeClass
 kubectl patch customresourcedefinitions ec2nodeclasses.karpenter.k8s.aws -p "{\"spec\":{\"conversion\":{\"webhook\":{\"clientConfig\":{\"service\": {\"name\": \"${SERVICE_NAME}\", \"namespace\": \"${SERVICE_NAMESPACE}\", \"port\":${SERVICE_PORT}}}}}}}"
@@ -368,15 +368,15 @@ helm upgrade --install karpenter-crd oci://public.ecr.aws/karpenter/karpenter-cr
 
 {{% alert title="Note" color="warning" %}}
 
-As an alternative approach to updating the Karpenter CRDs conversion webhook configuration, you can patch the CRDs as follows: 
+As an alternative approach to updating the Karpenter CRDs conversion webhook configuration, you can patch the CRDs as follows:
 
-```bash 
+```bash
 export SERVICE_NAME=<karpenter webhook service name>
 export SERVICE_NAMESPACE=<karpenter webhook service namespace>
 export SERVICE_PORT=<karpenter webhook service port>
 # NodePools
 kubectl patch customresourcedefinitions nodepools.karpenter.sh -p "{\"spec\":{\"conversion\":{\"webhook\":{\"clientConfig\":{\"service\": {\"name\": \"${SERVICE_NAME}\", \"namespace\": \"${SERVICE_NAMESPACE}\", \"port\":${SERVICE_PORT}}}}}}}"
-# NodeClaims 
+# NodeClaims
 kubectl patch customresourcedefinitions nodeclaims.karpenter.sh -p "{\"spec\":{\"conversion\":{\"webhook\":{\"clientConfig\":{\"service\": {\"name\": \"${SERVICE_NAME}\", \"namespace\": \"${SERVICE_NAMESPACE}\", \"port\":${SERVICE_PORT}}}}}}}"
 # EC2NodeClass
 kubectl patch customresourcedefinitions ec2nodeclasses.karpenter.k8s.aws -p "{\"spec\":{\"conversion\":{\"webhook\":{\"clientConfig\":{\"service\": {\"name\": \"${SERVICE_NAME}\", \"namespace\": \"${SERVICE_NAMESPACE}\", \"port\":${SERVICE_PORT}}}}}}}"
@@ -411,6 +411,7 @@ Karpenter should now be pulling and operating against the v1beta1 APIVersion as 
 * API Rename: NodePool’s ConsolidationPolicy `WhenUnderutilized` is now renamed to `WhenEmptyOrUnderutilized`
 * Behavior Changes:
   * Expiration is now forceful and begins draining as soon as it’s expired. Karpenter does not wait for replacement capacity to be available before draining, but will start provisioning a replacement as soon as the node is expired and begins draining.
+  * Pods with the `karpenter.sh/do-not-disrupt` annotation now block node termination. Termination of a node with these pods will be blocked until those pods are removed, enter a terminating or terminal state, or the NodeClaims's TerminationGracePeriod has expired.
   * Karpenter's generated NodeConfig now takes precedence when generating UserData with the AL2023 `amiFamily`. If you're setting any values managed by Karpenter in your AL2023 UserData, configure these through Karpenter natively (e.g. kubelet configuration fields).
   * Karpenter now adds a `karpenter.sh/unregistered:NoExecute` taint to nodes in injected UserData when using alias in AMISelectorTerms or non-Custom AMIFamily. When using `amiFamily: Custom`, users will need to add this taint into their UserData, where Karpenter will automatically remove it when provisioning nodes.
   * Discovered standard AL2023 AMIs will no longer be considered compatible with GPU / accelerator workloads. If you're using an AL2023 EC2NodeClass (without AMISelectorTerms) for these workloads, you will need to select your AMI via AMISelectorTerms (non-alias).
