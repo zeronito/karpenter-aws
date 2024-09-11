@@ -8363,7 +8363,7 @@ below are the resources available with some assumptions and after the instance o
  | Resource | Quantity |
  |--|--|
  |aws.amazon.com/neuron|4|
- |aws.amazon.com/neuroncore|4|
+ |aws.amazon.com/neuroncore|16|
  |aws.amazon.com/neurondevice|4|
  |cpu|23870m|
  |ephemeral-storage|17Gi|
@@ -8395,7 +8395,7 @@ below are the resources available with some assumptions and after the instance o
  | Resource | Quantity |
  |--|--|
  |aws.amazon.com/neuron|16|
- |aws.amazon.com/neuroncore|4|
+ |aws.amazon.com/neuroncore|64|
  |aws.amazon.com/neurondevice|16|
  |cpu|95690m|
  |ephemeral-storage|17Gi|
@@ -8493,7 +8493,7 @@ below are the resources available with some assumptions and after the instance o
  | Resource | Quantity |
  |--|--|
  |aws.amazon.com/neuron|6|
- |aws.amazon.com/neuroncore|2|
+ |aws.amazon.com/neuroncore|12|
  |aws.amazon.com/neurondevice|6|
  |cpu|95690m|
  |ephemeral-storage|17Gi|
@@ -8525,7 +8525,7 @@ below are the resources available with some assumptions and after the instance o
  | Resource | Quantity |
  |--|--|
  |aws.amazon.com/neuron|12|
- |aws.amazon.com/neuroncore|2|
+ |aws.amazon.com/neuroncore|24|
  |aws.amazon.com/neurondevice|12|
  |cpu|191450m|
  |ephemeral-storage|17Gi|
@@ -20216,7 +20216,7 @@ below are the resources available with some assumptions and after the instance o
  | Resource | Quantity |
  |--|--|
  |aws.amazon.com/neuron|16|
- |aws.amazon.com/neuroncore|2|
+ |aws.amazon.com/neuroncore|32|
  |aws.amazon.com/neurondevice|16|
  |cpu|127610m|
  |ephemeral-storage|17Gi|
@@ -20251,7 +20251,7 @@ below are the resources available with some assumptions and after the instance o
  | Resource | Quantity |
  |--|--|
  |aws.amazon.com/neuron|16|
- |aws.amazon.com/neuroncore|2|
+ |aws.amazon.com/neuroncore|32|
  |aws.amazon.com/neurondevice|16|
  |cpu|127610m|
  |ephemeral-storage|17Gi|
