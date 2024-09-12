@@ -17,10 +17,12 @@ package instancetype
 import (
 	"context"
 	"fmt"
+	"github.com/patrickmn/go-cache"
 	"math"
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ec2"
@@ -40,16 +42,18 @@ import (
 )
 
 const (
-	MemoryAvailable = "memory.available"
-	NodeFSAvailable = "nodefs.available"
+	MemoryAvailable            = "memory.available"
+	NodeFSAvailable            = "nodefs.available"
+	MemoryOverheadMebibytesTTL = 1 * time.Hour
 )
 
 var (
-	instanceTypeScheme = regexp.MustCompile(`(^[a-z]+)(\-[0-9]+tb)?([0-9]+).*\.`)
+	instanceTypeScheme      = regexp.MustCompile(`(^[a-z]+)(\-[0-9]+tb)?([0-9]+).*\.`)
+	MemoryOverheadMebibytes = cache.New(MemoryOverheadMebibytesTTL, 30*time.Minute)
 )
 
 func NewInstanceType(ctx context.Context, info *ec2.InstanceTypeInfo, region string,
-	blockDeviceMappings []*v1.BlockDeviceMapping, instanceStorePolicy *v1.InstanceStorePolicy, maxPods *int32, podsPerCore *int32,
+	ncHash string, blockDeviceMappings []*v1.BlockDeviceMapping, instanceStorePolicy *v1.InstanceStorePolicy, maxPods *int32, podsPerCore *int32,
 	kubeReserved map[string]string, systemReserved map[string]string, evictionHard map[string]string, evictionSoft map[string]string,
 	amiFamily amifamily.AMIFamily, offerings cloudprovider.Offerings) *cloudprovider.InstanceType {
 
@@ -57,11 +61,11 @@ func NewInstanceType(ctx context.Context, info *ec2.InstanceTypeInfo, region str
 		Name:         aws.StringValue(info.InstanceType),
 		Requirements: computeRequirements(info, offerings, region, amiFamily),
 		Offerings:    offerings,
-		Capacity:     computeCapacity(ctx, info, amiFamily, blockDeviceMappings, instanceStorePolicy, maxPods, podsPerCore),
+		Capacity:     computeCapacity(ctx, info, amiFamily, blockDeviceMappings, instanceStorePolicy, maxPods, podsPerCore, ncHash),
 		Overhead: &cloudprovider.InstanceTypeOverhead{
 			KubeReserved:      kubeReservedResources(cpu(info), pods(ctx, info, amiFamily, maxPods, podsPerCore), ENILimitedPods(ctx, info), amiFamily, kubeReserved),
 			SystemReserved:    systemReservedResources(systemReserved),
-			EvictionThreshold: evictionThreshold(memory(ctx, info), ephemeralStorage(info, amiFamily, blockDeviceMappings, instanceStorePolicy), amiFamily, evictionHard, evictionSoft),
+			EvictionThreshold: evictionThreshold(memory(ctx, info, ncHash), ephemeralStorage(info, amiFamily, blockDeviceMappings, instanceStorePolicy), amiFamily, evictionHard, evictionSoft),
 		},
 	}
 	if it.Requirements.Compatible(scheduling.NewRequirements(scheduling.NewRequirement(corev1.LabelOSStable, corev1.NodeSelectorOpIn, string(corev1.Windows)))) == nil {
@@ -192,11 +196,11 @@ func getArchitecture(info *ec2.InstanceTypeInfo) string {
 
 func computeCapacity(ctx context.Context, info *ec2.InstanceTypeInfo, amiFamily amifamily.AMIFamily,
 	blockDeviceMapping []*v1.BlockDeviceMapping, instanceStorePolicy *v1.InstanceStorePolicy,
-	maxPods *int32, podsPerCore *int32) corev1.ResourceList {
+	maxPods *int32, podsPerCore *int32, ncHash string) corev1.ResourceList {
 
 	resourceList := corev1.ResourceList{
 		corev1.ResourceCPU:              *cpu(info),
-		corev1.ResourceMemory:           *memory(ctx, info),
+		corev1.ResourceMemory:           *memory(ctx, info, ncHash),
 		corev1.ResourceEphemeralStorage: *ephemeralStorage(info, amiFamily, blockDeviceMapping, instanceStorePolicy),
 		corev1.ResourcePods:             *pods(ctx, info, amiFamily, maxPods, podsPerCore),
 		v1.ResourceAWSPodENI:            *awsPodENI(aws.StringValue(info.InstanceType)),
@@ -213,7 +217,7 @@ func cpu(info *ec2.InstanceTypeInfo) *resource.Quantity {
 	return resources.Quantity(fmt.Sprint(*info.VCpuInfo.DefaultVCpus))
 }
 
-func memory(ctx context.Context, info *ec2.InstanceTypeInfo) *resource.Quantity {
+func memory(ctx context.Context, info *ec2.InstanceTypeInfo, ncHash string) *resource.Quantity {
 	sizeInMib := *info.MemoryInfo.SizeInMiB
 	// Gravitons have an extra 64 MiB of cma reserved memory that we can't use
 	if len(info.ProcessorInfo.SupportedArchitectures) > 0 && *info.ProcessorInfo.SupportedArchitectures[0] == "arm64" {
@@ -221,7 +225,12 @@ func memory(ctx context.Context, info *ec2.InstanceTypeInfo) *resource.Quantity 
 	}
 	mem := resources.Quantity(fmt.Sprintf("%dMi", sizeInMib))
 	// Account for VM overhead in calculation
-	mem.Sub(resource.MustParse(fmt.Sprintf("%dMi", int64(math.Ceil(float64(mem.Value())*options.FromContext(ctx).VMMemoryOverheadPercent/1024/1024)))))
+	overhead, ok := MemoryOverheadMebibytes.Get(fmt.Sprintf("%s-%s", ncHash, *info.InstanceType))
+	if ok {
+		mem.Sub(resource.MustParse(fmt.Sprintf("%dMi", overhead.(int64))))
+	} else {
+		mem.Sub(resource.MustParse(fmt.Sprintf("%dMi", int64(math.Ceil(float64(mem.Value())*options.FromContext(ctx).VMMemoryOverheadPercent/1024/1024)))))
+	}
 	return mem
 }
 
