@@ -55,28 +55,34 @@ func (c *Controller) Reconcile(ctx context.Context) (reconcile.Result, error) {
 		return reconcile.Result{}, err
 	}
 
-	nodeMap := make(map[string]*corev1.Node, len(nodeList.Items))
-	for _, node := range nodeList.Items {
-		nodeMap[node.Name] = &node
-	}
+	nodeMap := lo.Associate(nodeList.Items, func(node corev1.Node) (string, *corev1.Node) {
+		return node.Name, &node
+	})
 
 	for _, nodeClass := range nodeClassList.Items {
 
 		// Iterate over NodeClaims to find matching instance types
 		for _, nodeClaim := range nodeClaimList.Items {
-			instType := nodeClaim.Labels[corev1.LabelInstanceTypeStable]
+			// Skip NodeClaims that don't match current NodeClass
+			if nodeClaim.Spec.NodeClassRef.Name != nodeClass.Name {
+				continue
+			}
 
-			// Build cache key from combination of NodeClass and instance type
-			key := fmt.Sprintf("%d-%s", nodeClass.Hash(), instType)
-
+			// Skip non-registered nodes
+			// Is this check necessary?
 			node, exists := nodeMap[nodeClaim.Status.NodeName]
 			if !exists {
 				continue
 			}
 
-			// Store the memory capacity in the map
-			memoryOverheadMib := node.Status.Capacity.Memory().Value() / 1024 / 1024
-			instancetype.MemoryOverheadMebibytes.SetDefault(key, memoryOverheadMib)
+			// Build cache key from combination of NodeClass hash and instance type
+			instType := nodeClaim.Labels[corev1.LabelInstanceTypeStable]
+			key := fmt.Sprintf("%d-%s", nodeClass.Hash(), instType)
+
+			// Add memory capacity in the map
+			actual := node.Status.Capacity.Memory().Value() / 1024 / 1024
+
+			instancetype.MemoryOverheadMebibytes.SetDefault(key, actual)
 		}
 	}
 	c.successfulCount++

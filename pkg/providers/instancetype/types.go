@@ -218,6 +218,11 @@ func cpu(info *ec2.InstanceTypeInfo) *resource.Quantity {
 }
 
 func memory(ctx context.Context, info *ec2.InstanceTypeInfo, ncHash string) *resource.Quantity {
+	cachedMemValueMib, ok := MemoryOverheadMebibytes.Get(fmt.Sprintf("%s-%s", ncHash, *info.InstanceType))
+	if ok {
+		return resources.Quantity(fmt.Sprintf("%dMi", cachedMemValueMib.(int64)))
+	}
+
 	sizeInMib := *info.MemoryInfo.SizeInMiB
 	// Gravitons have an extra 64 MiB of cma reserved memory that we can't use
 	if len(info.ProcessorInfo.SupportedArchitectures) > 0 && *info.ProcessorInfo.SupportedArchitectures[0] == "arm64" {
@@ -225,12 +230,7 @@ func memory(ctx context.Context, info *ec2.InstanceTypeInfo, ncHash string) *res
 	}
 	mem := resources.Quantity(fmt.Sprintf("%dMi", sizeInMib))
 	// Account for VM overhead in calculation
-	overhead, ok := MemoryOverheadMebibytes.Get(fmt.Sprintf("%s-%s", ncHash, *info.InstanceType))
-	if ok {
-		mem.Sub(resource.MustParse(fmt.Sprintf("%dMi", overhead.(int64))))
-	} else {
-		mem.Sub(resource.MustParse(fmt.Sprintf("%dMi", int64(math.Ceil(float64(mem.Value())*options.FromContext(ctx).VMMemoryOverheadPercent/1024/1024)))))
-	}
+	mem.Sub(resource.MustParse(fmt.Sprintf("%dMi", int64(math.Ceil(float64(mem.Value())*options.FromContext(ctx).VMMemoryOverheadPercent/1024/1024)))))
 	return mem
 }
 
