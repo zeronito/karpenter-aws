@@ -172,7 +172,7 @@ func (p *DefaultProvider) List(ctx context.Context, kc *v1.KubeletConfiguration,
 		// so that Karpenter is able to cache the set of InstanceTypes based on values that alter the set of instance types
 		// !!! Important !!!
 		return NewInstanceType(ctx, i, p.region,
-			nodeClass.Hash(), nodeClass.Spec.BlockDeviceMappings, nodeClass.Spec.InstanceStorePolicy,
+			nodeClass.Name, nodeClass.Spec.BlockDeviceMappings, nodeClass.Spec.InstanceStorePolicy,
 			kc.MaxPods, kc.PodsPerCore, kc.KubeReserved, kc.SystemReserved, kc.EvictionHard, kc.EvictionSoft,
 			amiFamily, p.createOfferings(ctx, i, allZones, p.instanceTypeOfferings[aws.StringValue(i.InstanceType)], nodeClass.Status.Subnets),
 		)
@@ -297,7 +297,6 @@ func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context) 
 			return
 		}
 		reportedMiB := instanceTypeInfo.MemoryInfo.SizeInMiB
-		//actualMib := node.Status.Capacity.Memory().Value() / 1024 / 1024
 		actualMib := node.Status.Capacity.Memory().Value() / 1024 / 1024
 
 		overhead := *reportedMiB - actualMib
