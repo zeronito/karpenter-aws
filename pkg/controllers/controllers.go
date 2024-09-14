@@ -16,6 +16,7 @@ package controllers
 
 import (
 	"context"
+
 	"github.com/awslabs/operatorpkg/controller"
 	"github.com/awslabs/operatorpkg/status"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
