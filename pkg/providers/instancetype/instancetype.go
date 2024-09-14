@@ -128,7 +128,8 @@ func (p *DefaultProvider) List(ctx context.Context, kc *v1.KubeletConfiguration,
 	subnetZonesHash, _ := hashstructure.Hash(subnetZones, hashstructure.FormatV2, &hashstructure.HashOptions{SlicesAsSets: true})
 	kcHash, _ := hashstructure.Hash(kc, hashstructure.FormatV2, &hashstructure.HashOptions{SlicesAsSets: true})
 	blockDeviceMappingsHash, _ := hashstructure.Hash(nodeClass.Spec.BlockDeviceMappings, hashstructure.FormatV2, &hashstructure.HashOptions{SlicesAsSets: true})
-	key := fmt.Sprintf("%d-%d-%d-%016x-%016x-%016x-%s-%s",
+	amiHash, _ := hashstructure.Hash(nodeClass.Status.AMIs, hashstructure.FormatV2, nil)
+	key := fmt.Sprintf("%d-%d-%d-%016x-%016x-%016x-%s-%d",
 		p.instanceTypesSeqNum,
 		p.instanceTypeOfferingsSeqNum,
 		p.unavailableOfferings.SeqNum,
@@ -136,7 +137,7 @@ func (p *DefaultProvider) List(ctx context.Context, kc *v1.KubeletConfiguration,
 		kcHash,
 		blockDeviceMappingsHash,
 		lo.FromPtr((*string)(nodeClass.Spec.InstanceStorePolicy)),
-		nodeClass.AMIFamily(),
+		amiHash,
 	)
 	if item, ok := p.instanceTypesCache.Get(key); ok {
 		// Ensure what's returned from this function is a shallow-copy of the slice (not a deep-copy of the data itself)
@@ -169,7 +170,7 @@ func (p *DefaultProvider) List(ctx context.Context, kc *v1.KubeletConfiguration,
 		// so that Karpenter is able to cache the set of InstanceTypes based on values that alter the set of instance types
 		// !!! Important !!!
 		return NewInstanceType(ctx, i, p.region,
-			nodeClass.Name, nodeClass.Spec.BlockDeviceMappings, nodeClass.Spec.InstanceStorePolicy,
+			amiHash, nodeClass.Spec.BlockDeviceMappings, nodeClass.Spec.InstanceStorePolicy,
 			kc.MaxPods, kc.PodsPerCore, kc.KubeReserved, kc.SystemReserved, kc.EvictionHard, kc.EvictionSoft,
 			amiFamily, p.createOfferings(ctx, i, allZones, p.instanceTypeOfferings[aws.StringValue(i.InstanceType)], nodeClass.Status.Subnets),
 		)
@@ -261,9 +262,11 @@ func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context, 
 	if err := kubeClient.List(ctx, nodeClassList); err != nil {
 		return fmt.Errorf("failed to list nodeclasses: %w", err)
 	}
+
 	nodeClassMap := lo.Associate(nodeClassList.Items, func(nodeClass v1.EC2NodeClass) (string, v1.EC2NodeClass) {
 		return nodeClass.Hash(), nodeClass
 	})
+
 	nodeList := &corev1.NodeList{}
 	if err := kubeClient.List(ctx, nodeList, &client.ListOptions{
 		LabelSelector: labels.SelectorFromSet(map[string]string{karpv1.NodeRegisteredLabelKey: "true"}),
@@ -275,12 +278,13 @@ func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context, 
 		return *i.InstanceType, i
 	})
 
-	overheadMap := make(map[string]int64)
+	overheadMemoryMap := make(map[string]int64)
 	var mu sync.Mutex
+
 	workqueue.ParallelizeUntil(ctx, 100, len(nodeList.Items), func(i int) {
 		node := nodeList.Items[i]
 
-		// Only cache capacity info from nodes with current EC2NodeClass hash
+		// Get the EC2NodeClass for the current node based on the hash annotation
 		nodeClass, ok := nodeClassMap[node.Annotations[v1.AnnotationEC2NodeClassHash]]
 		if !ok {
 			return
@@ -290,23 +294,29 @@ func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context, 
 		if !ok {
 			return
 		}
+
 		instanceTypeInfo, ok := instanceTypeInfoMap[instanceType]
 		if !ok || instanceTypeInfo == nil {
 			return
 		}
+
+		amiHash, _ := hashstructure.Hash(nodeClass.Status.AMIs, hashstructure.FormatV2, nil)
+
+		// Calculate memory overhead and store to the map
 		reportedMiB := instanceTypeInfo.MemoryInfo.SizeInMiB
 		actualMib := node.Status.Capacity.Memory().Value() / 1024 / 1024
-
 		overhead := *reportedMiB - actualMib
-		cacheKey := fmt.Sprintf("%s-%s", instanceType, nodeClass.Name)
+		cacheKey := fmt.Sprintf("%s-%d", instanceType, amiHash)
 		mu.Lock()
-		overheadMap[cacheKey] = overhead
+		overheadMemoryMap[cacheKey] = overhead
 		mu.Unlock()
-
 	})
-	for k, v := range overheadMap {
+
+	// Update the cache with the calculated overhead
+	for k, v := range overheadMemoryMap {
 		MemoryOverheadCacheMiB.SetDefault(k, v)
 	}
+
 	return nil
 }
 

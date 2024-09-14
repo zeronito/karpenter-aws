@@ -53,18 +53,18 @@ var (
 )
 
 func NewInstanceType(ctx context.Context, info *ec2.InstanceTypeInfo, region string,
-	ncName string, blockDeviceMappings []*v1.BlockDeviceMapping, instanceStorePolicy *v1.InstanceStorePolicy, maxPods *int32, podsPerCore *int32,
+	amiHash uint64, blockDeviceMappings []*v1.BlockDeviceMapping, instanceStorePolicy *v1.InstanceStorePolicy, maxPods *int32, podsPerCore *int32,
 	kubeReserved map[string]string, systemReserved map[string]string, evictionHard map[string]string, evictionSoft map[string]string,
 	amiFamily amifamily.AMIFamily, offerings cloudprovider.Offerings) *cloudprovider.InstanceType {
 	it := &cloudprovider.InstanceType{
 		Name:         aws.StringValue(info.InstanceType),
 		Requirements: computeRequirements(info, offerings, region, amiFamily),
 		Offerings:    offerings,
-		Capacity:     computeCapacity(ctx, info, amiFamily, blockDeviceMappings, instanceStorePolicy, maxPods, podsPerCore, ncName),
+		Capacity:     computeCapacity(ctx, info, amiFamily, blockDeviceMappings, instanceStorePolicy, maxPods, podsPerCore, amiHash),
 		Overhead: &cloudprovider.InstanceTypeOverhead{
 			KubeReserved:      kubeReservedResources(cpu(info), pods(ctx, info, amiFamily, maxPods, podsPerCore), ENILimitedPods(ctx, info), amiFamily, kubeReserved),
 			SystemReserved:    systemReservedResources(systemReserved),
-			EvictionThreshold: evictionThreshold(memory(ctx, info, ncName), ephemeralStorage(info, amiFamily, blockDeviceMappings, instanceStorePolicy), amiFamily, evictionHard, evictionSoft),
+			EvictionThreshold: evictionThreshold(memory(ctx, info, amiHash), ephemeralStorage(info, amiFamily, blockDeviceMappings, instanceStorePolicy), amiFamily, evictionHard, evictionSoft),
 		},
 	}
 	if it.Requirements.Compatible(scheduling.NewRequirements(scheduling.NewRequirement(corev1.LabelOSStable, corev1.NodeSelectorOpIn, string(corev1.Windows)))) == nil {
@@ -195,11 +195,11 @@ func getArchitecture(info *ec2.InstanceTypeInfo) string {
 
 func computeCapacity(ctx context.Context, info *ec2.InstanceTypeInfo, amiFamily amifamily.AMIFamily,
 	blockDeviceMapping []*v1.BlockDeviceMapping, instanceStorePolicy *v1.InstanceStorePolicy,
-	maxPods *int32, podsPerCore *int32, ncName string) corev1.ResourceList {
+	maxPods *int32, podsPerCore *int32, amiHash uint64) corev1.ResourceList {
 
 	resourceList := corev1.ResourceList{
 		corev1.ResourceCPU:              *cpu(info),
-		corev1.ResourceMemory:           *memory(ctx, info, ncName),
+		corev1.ResourceMemory:           *memory(ctx, info, amiHash),
 		corev1.ResourceEphemeralStorage: *ephemeralStorage(info, amiFamily, blockDeviceMapping, instanceStorePolicy),
 		corev1.ResourcePods:             *pods(ctx, info, amiFamily, maxPods, podsPerCore),
 		v1.ResourceAWSPodENI:            *awsPodENI(aws.StringValue(info.InstanceType)),
@@ -216,11 +216,11 @@ func cpu(info *ec2.InstanceTypeInfo) *resource.Quantity {
 	return resources.Quantity(fmt.Sprint(*info.VCpuInfo.DefaultVCpus))
 }
 
-func memory(ctx context.Context, info *ec2.InstanceTypeInfo, ncName string) *resource.Quantity {
+func memory(ctx context.Context, info *ec2.InstanceTypeInfo, amiHash uint64) *resource.Quantity {
 	sizeInMib := *info.MemoryInfo.SizeInMiB
 
 	// Check controller-managed cache for existing memory overhead value
-	cachedMemOverhead, ok := MemoryOverheadCacheMiB.Get(fmt.Sprintf("%s-%s", *info.InstanceType, ncName))
+	cachedMemOverhead, ok := MemoryOverheadCacheMiB.Get(fmt.Sprintf("%s-%d", *info.InstanceType, amiHash))
 	if ok {
 		mem := resources.Quantity(fmt.Sprintf("%dMi", sizeInMib))
 		mem.Sub(resource.MustParse(fmt.Sprintf("%dMi", cachedMemOverhead.(int64))))
