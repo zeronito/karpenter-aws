@@ -164,7 +164,6 @@ func NewOperator(ctx context.Context, operator *operator.Operator) (context.Cont
 		subnetProvider,
 		unavailableOfferingsCache,
 		pricingProvider,
-		operator.GetClient(),
 	)
 	instanceProvider := instance.NewDefaultProvider(
 		ctx,

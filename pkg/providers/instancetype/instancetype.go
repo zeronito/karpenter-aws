@@ -55,7 +55,7 @@ type Provider interface {
 	List(context.Context, *v1.KubeletConfiguration, *v1.EC2NodeClass) ([]*cloudprovider.InstanceType, error)
 	UpdateInstanceTypes(ctx context.Context) error
 	UpdateInstanceTypeOfferings(ctx context.Context) error
-	UpdateInstanceTypeMemoryOverhead(ctx context.Context) error
+	UpdateInstanceTypeMemoryOverhead(ctx context.Context, kubeClient client.Client) error
 }
 
 type DefaultProvider struct {
@@ -63,8 +63,6 @@ type DefaultProvider struct {
 	ec2api          ec2iface.EC2API
 	subnetProvider  subnet.Provider
 	pricingProvider pricing.Provider
-
-	kubeClient client.Client
 
 	// Values stored *before* considering insufficient capacity errors from the unavailableOfferings cache.
 	// Fully initialized Instance Types are also cached based on the set of all instance types, zones, unavailableOfferings cache,
@@ -88,13 +86,12 @@ type DefaultProvider struct {
 }
 
 func NewDefaultProvider(region string, instanceTypesCache *cache.Cache, ec2api ec2iface.EC2API, subnetProvider subnet.Provider,
-	unavailableOfferingsCache *awscache.UnavailableOfferings, pricingProvider pricing.Provider, kubeClient client.Client) *DefaultProvider {
+	unavailableOfferingsCache *awscache.UnavailableOfferings, pricingProvider pricing.Provider) *DefaultProvider {
 	return &DefaultProvider{
 		ec2api:                ec2api,
 		region:                region,
 		subnetProvider:        subnetProvider,
 		pricingProvider:       pricingProvider,
-		kubeClient:            kubeClient,
 		instanceTypesInfo:     []*ec2.InstanceTypeInfo{},
 		instanceTypeOfferings: map[string]sets.Set[string]{},
 		instanceTypesCache:    instanceTypesCache,
@@ -259,16 +256,16 @@ func (p *DefaultProvider) UpdateInstanceTypeOfferings(ctx context.Context) error
 	return nil
 }
 
-func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context) error {
+func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context, kubeClient client.Client) error {
 	nodeClassList := &v1.EC2NodeClassList{}
-	if err := p.kubeClient.List(ctx, nodeClassList); err != nil {
+	if err := kubeClient.List(ctx, nodeClassList); err != nil {
 		return fmt.Errorf("failed to list nodeclasses: %w", err)
 	}
 	nodeClassMap := lo.Associate(nodeClassList.Items, func(nodeClass v1.EC2NodeClass) (string, v1.EC2NodeClass) {
 		return nodeClass.Hash(), nodeClass
 	})
 	nodeList := &corev1.NodeList{}
-	if err := p.kubeClient.List(ctx, nodeList, &client.ListOptions{
+	if err := kubeClient.List(ctx, nodeList, &client.ListOptions{
 		LabelSelector: labels.SelectorFromSet(map[string]string{karpv1.NodeRegisteredLabelKey: "true"}),
 	}); err != nil {
 		return fmt.Errorf("failed to list nodes: %w", err)
@@ -278,11 +275,12 @@ func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context) 
 		return *i.InstanceType, i
 	})
 
-	memMap := make(map[string]int64)
+	overheadMap := make(map[string]int64)
 	var mu sync.Mutex
 	workqueue.ParallelizeUntil(ctx, 100, len(nodeList.Items), func(i int) {
 		node := nodeList.Items[i]
 
+		// Only cache capacity info from nodes with current EC2NodeClass hash
 		nodeClass, ok := nodeClassMap[node.Annotations[v1.AnnotationEC2NodeClassHash]]
 		if !ok {
 			return
@@ -302,12 +300,12 @@ func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context) 
 		overhead := *reportedMiB - actualMib
 		cacheKey := fmt.Sprintf("%s-%s", instanceType, nodeClass.Name)
 		mu.Lock()
-		memMap[cacheKey] = overhead
+		overheadMap[cacheKey] = overhead
 		mu.Unlock()
 
 	})
-	for k, v := range memMap {
-		memoryOverheadCacheMiB.SetDefault(k, v)
+	for k, v := range overheadMap {
+		MemoryOverheadCacheMiB.SetDefault(k, v)
 	}
 	return nil
 }

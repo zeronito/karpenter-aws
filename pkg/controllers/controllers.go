@@ -65,7 +65,7 @@ func NewControllers(ctx context.Context, mgr manager.Manager, sess *session.Sess
 		nodeclaimgarbagecollection.NewController(kubeClient, cloudProvider),
 		nodeclaimtagging.NewController(kubeClient, instanceProvider),
 		controllerspricing.NewController(pricingProvider),
-		controllersinstancetype.NewController(instanceTypeProvider),
+		controllersinstancetype.NewController(instanceTypeProvider, kubeClient),
 		status.NewController[*v1.EC2NodeClass](kubeClient, mgr.GetEventRecorderFor("karpenter")),
 	}
 	if options.FromContext(ctx).InterruptionQueue != "" {

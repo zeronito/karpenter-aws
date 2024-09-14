@@ -44,19 +44,18 @@ import (
 const (
 	MemoryAvailable            = "memory.available"
 	NodeFSAvailable            = "nodefs.available"
-	memoryOverheadMebibytesTTL = 1 * time.Hour
+	MemoryOverheadMebibytesTTL = 36 * time.Hour
 )
 
 var (
 	instanceTypeScheme     = regexp.MustCompile(`(^[a-z]+)(\-[0-9]+tb)?([0-9]+).*\.`)
-	memoryOverheadCacheMiB = cache.New(memoryOverheadMebibytesTTL, 30*time.Minute)
+	MemoryOverheadCacheMiB = cache.New(MemoryOverheadMebibytesTTL, 12*time.Hour)
 )
 
 func NewInstanceType(ctx context.Context, info *ec2.InstanceTypeInfo, region string,
 	ncName string, blockDeviceMappings []*v1.BlockDeviceMapping, instanceStorePolicy *v1.InstanceStorePolicy, maxPods *int32, podsPerCore *int32,
 	kubeReserved map[string]string, systemReserved map[string]string, evictionHard map[string]string, evictionSoft map[string]string,
 	amiFamily amifamily.AMIFamily, offerings cloudprovider.Offerings) *cloudprovider.InstanceType {
-
 	it := &cloudprovider.InstanceType{
 		Name:         aws.StringValue(info.InstanceType),
 		Requirements: computeRequirements(info, offerings, region, amiFamily),
@@ -221,7 +220,7 @@ func memory(ctx context.Context, info *ec2.InstanceTypeInfo, ncName string) *res
 	sizeInMib := *info.MemoryInfo.SizeInMiB
 
 	// Check controller-managed cache for existing memory overhead value
-	cachedMemOverhead, ok := memoryOverheadCacheMiB.Get(fmt.Sprintf("%s-%s", *info.InstanceType, ncName))
+	cachedMemOverhead, ok := MemoryOverheadCacheMiB.Get(fmt.Sprintf("%s-%s", *info.InstanceType, ncName))
 	if ok {
 		mem := resources.Quantity(fmt.Sprintf("%dMi", sizeInMib))
 		mem.Sub(resource.MustParse(fmt.Sprintf("%dMi", cachedMemOverhead.(int64))))
