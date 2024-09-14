@@ -17,7 +17,10 @@ package instancetype
 import (
 	"context"
 	"fmt"
+	"k8s.io/apimachinery/pkg/labels"
+	"k8s.io/client-go/util/workqueue"
 	"net/http"
+	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sync"
 	"sync/atomic"
 
@@ -52,6 +55,7 @@ type Provider interface {
 	List(context.Context, *v1.KubeletConfiguration, *v1.EC2NodeClass) ([]*cloudprovider.InstanceType, error)
 	UpdateInstanceTypes(ctx context.Context) error
 	UpdateInstanceTypeOfferings(ctx context.Context) error
+	UpdateInstanceTypeMemoryOverhead(ctx context.Context) error
 }
 
 type DefaultProvider struct {
@@ -59,6 +63,8 @@ type DefaultProvider struct {
 	ec2api          ec2iface.EC2API
 	subnetProvider  subnet.Provider
 	pricingProvider pricing.Provider
+
+	kubeClient client.Client
 
 	// Values stored *before* considering insufficient capacity errors from the unavailableOfferings cache.
 	// Fully initialized Instance Types are also cached based on the set of all instance types, zones, unavailableOfferings cache,
@@ -82,12 +88,13 @@ type DefaultProvider struct {
 }
 
 func NewDefaultProvider(region string, instanceTypesCache *cache.Cache, ec2api ec2iface.EC2API, subnetProvider subnet.Provider,
-	unavailableOfferingsCache *awscache.UnavailableOfferings, pricingProvider pricing.Provider) *DefaultProvider {
+	unavailableOfferingsCache *awscache.UnavailableOfferings, pricingProvider pricing.Provider, kubeClient client.Client) *DefaultProvider {
 	return &DefaultProvider{
 		ec2api:                ec2api,
 		region:                region,
 		subnetProvider:        subnetProvider,
 		pricingProvider:       pricingProvider,
+		kubeClient:            kubeClient,
 		instanceTypesInfo:     []*ec2.InstanceTypeInfo{},
 		instanceTypeOfferings: map[string]sets.Set[string]{},
 		instanceTypesCache:    instanceTypesCache,
@@ -249,6 +256,60 @@ func (p *DefaultProvider) UpdateInstanceTypeOfferings(ctx context.Context) error
 		log.FromContext(ctx).WithValues("instance-type-count", len(instanceTypeOfferings)).V(1).Info("discovered offerings for instance types")
 	}
 	p.instanceTypeOfferings = instanceTypeOfferings
+	return nil
+}
+
+func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context) error {
+	nodeClassList := &v1.EC2NodeClassList{}
+	if err := p.kubeClient.List(ctx, nodeClassList); err != nil {
+		return fmt.Errorf("failed to list nodeclasses: %w", err)
+	}
+	nodeClassMap := lo.Associate(nodeClassList.Items, func(nodeClass v1.EC2NodeClass) (string, v1.EC2NodeClass) {
+		return nodeClass.Hash(), nodeClass
+	})
+	nodeList := &corev1.NodeList{}
+	if err := p.kubeClient.List(ctx, nodeList, &client.ListOptions{
+		LabelSelector: labels.SelectorFromSet(map[string]string{karpv1.NodeRegisteredLabelKey: "true"}),
+	}); err != nil {
+		return fmt.Errorf("failed to list nodes: %w", err)
+	}
+
+	instanceTypeInfoMap := lo.Associate(p.instanceTypesInfo, func(i *ec2.InstanceTypeInfo) (string, *ec2.InstanceTypeInfo) {
+		return *i.InstanceType, i
+	})
+
+	memMap := make(map[string]int64)
+	var mu sync.Mutex
+	workqueue.ParallelizeUntil(ctx, 100, len(nodeList.Items), func(i int) {
+		node := nodeList.Items[i]
+
+		nodeClass, ok := nodeClassMap[node.Annotations[v1.AnnotationEC2NodeClassHash]]
+		if !ok {
+			return
+		}
+
+		instanceType, ok := node.Labels[corev1.LabelInstanceTypeStable]
+		if !ok {
+			return
+		}
+		instanceTypeInfo, ok := instanceTypeInfoMap[instanceType]
+		if !ok || instanceTypeInfo == nil {
+			return
+		}
+		reportedMiB := instanceTypeInfo.MemoryInfo.SizeInMiB
+		//actualMib := node.Status.Capacity.Memory().Value() / 1024 / 1024
+		actualMib := node.Status.Capacity.Memory().Value() / 1024 / 1024
+
+		overhead := *reportedMiB - actualMib
+		cacheKey := fmt.Sprintf("%s-%s", instanceType, nodeClass.Name)
+		mu.Lock()
+		memMap[cacheKey] = overhead
+		mu.Unlock()
+
+	})
+	for k, v := range memMap {
+		memoryOverheadCacheMiB.SetDefault(k, v)
+	}
 	return nil
 }
 

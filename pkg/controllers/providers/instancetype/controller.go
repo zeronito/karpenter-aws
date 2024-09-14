@@ -46,6 +46,7 @@ func (c *Controller) Reconcile(ctx context.Context) (reconcile.Result, error) {
 	work := []func(ctx context.Context) error{
 		c.instancetypeProvider.UpdateInstanceTypes,
 		c.instancetypeProvider.UpdateInstanceTypeOfferings,
+		c.instancetypeProvider.UpdateInstanceTypeMemoryOverhead,
 	}
 	errs := make([]error, len(work))
 	lop.ForEach(work, func(f func(ctx context.Context) error, i int) {

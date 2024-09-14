@@ -44,12 +44,12 @@ import (
 const (
 	MemoryAvailable            = "memory.available"
 	NodeFSAvailable            = "nodefs.available"
-	MemoryOverheadMebibytesTTL = 1 * time.Hour
+	memoryOverheadMebibytesTTL = 1 * time.Hour
 )
 
 var (
-	instanceTypeScheme      = regexp.MustCompile(`(^[a-z]+)(\-[0-9]+tb)?([0-9]+).*\.`)
-	MemoryOverheadMebibytes = cache.New(MemoryOverheadMebibytesTTL, 30*time.Minute)
+	instanceTypeScheme     = regexp.MustCompile(`(^[a-z]+)(\-[0-9]+tb)?([0-9]+).*\.`)
+	memoryOverheadCacheMiB = cache.New(memoryOverheadMebibytesTTL, 30*time.Minute)
 )
 
 func NewInstanceType(ctx context.Context, info *ec2.InstanceTypeInfo, region string,
@@ -217,13 +217,17 @@ func cpu(info *ec2.InstanceTypeInfo) *resource.Quantity {
 	return resources.Quantity(fmt.Sprint(*info.VCpuInfo.DefaultVCpus))
 }
 
-func memory(ctx context.Context, info *ec2.InstanceTypeInfo, ncHash string) *resource.Quantity {
-	cachedMemValueMib, ok := MemoryOverheadMebibytes.Get(fmt.Sprintf("%s-%s", ncHash, *info.InstanceType))
+func memory(ctx context.Context, info *ec2.InstanceTypeInfo, ncName string) *resource.Quantity {
+	sizeInMib := *info.MemoryInfo.SizeInMiB
+
+	// Check controller-managed cache for existing memory overhead value
+	cachedMemOverhead, ok := memoryOverheadCacheMiB.Get(fmt.Sprintf("%s-%s", *info.InstanceType, ncName))
 	if ok {
-		return resources.Quantity(fmt.Sprintf("%dMi", cachedMemValueMib.(int64)))
+		mem := resources.Quantity(fmt.Sprintf("%dMi", sizeInMib))
+		mem.Sub(resource.MustParse(fmt.Sprintf("%dMi", cachedMemOverhead.(int64))))
+		return mem
 	}
 
-	sizeInMib := *info.MemoryInfo.SizeInMiB
 	// Gravitons have an extra 64 MiB of cma reserved memory that we can't use
 	if len(info.ProcessorInfo.SupportedArchitectures) > 0 && *info.ProcessorInfo.SupportedArchitectures[0] == "arm64" {
 		sizeInMib -= 64
