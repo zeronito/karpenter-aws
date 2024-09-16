@@ -16,10 +16,6 @@ package instancetype_test
 
 import (
 	"context"
-	"fmt"
-	"github.com/aws/karpenter-provider-aws/pkg/providers/instancetype"
-	"k8s.io/apimachinery/pkg/api/resource"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"testing"
 
 	"sigs.k8s.io/karpenter/pkg/test/v1alpha1"
@@ -62,7 +58,7 @@ var _ = BeforeSuite(func() {
 	ctx = options.ToContext(ctx, test.Options())
 	ctx, stop = context.WithCancel(ctx)
 	awsEnv = test.NewEnvironment(ctx, env)
-	controller = controllersinstancetype.NewController(awsEnv.InstanceTypesProvider, env.Client)
+	controller = controllersinstancetype.NewController(awsEnv.InstanceTypesProvider)
 })
 
 var _ = AfterSuite(func() {
@@ -73,8 +69,8 @@ var _ = AfterSuite(func() {
 var _ = BeforeEach(func() {
 	ctx = coreoptions.ToContext(ctx, coretest.Options())
 	ctx = options.ToContext(ctx, test.Options())
-	awsEnv.Reset()
 
+	awsEnv.Reset()
 })
 
 var _ = AfterEach(func() {
@@ -171,54 +167,5 @@ var _ = Describe("InstanceType", func() {
 		ExpectSingletonReconciled(ctx, controller)
 		_, err := awsEnv.InstanceTypesProvider.List(ctx, &v1.KubeletConfiguration{}, &v1.EC2NodeClass{})
 		Expect(err).ToNot(BeNil())
-	})
-	It("should update instance type memory overhead based on node capacities", func() {
-		actualMemoryCapacity := int64(3840)
-		reportedMemoryCapacity := int64(4096)
-		node := &corev1.Node{
-			ObjectMeta: metav1.ObjectMeta{
-				Name: "test-node",
-				Labels: map[string]string{
-					corev1.LabelInstanceTypeStable: "t3.medium",
-				},
-				Annotations: map[string]string{
-					v1.AnnotationEC2NodeClassHash: "node-class-hash",
-				},
-			},
-			Status: corev1.NodeStatus{
-				Capacity: corev1.ResourceList{
-					corev1.ResourceMemory: resource.MustParse(fmt.Sprintf("%dMi", actualMemoryCapacity)),
-				},
-			},
-		}
-		ExpectApplied(ctx, env.Client, node)
-
-		nodeClass := &v1.EC2NodeClass{
-			ObjectMeta: metav1.ObjectMeta{
-				Name: "test-nodeclass",
-				Annotations: map[string]string{
-					v1.AnnotationEC2NodeClassHash: "node-class-hash",
-				},
-			},
-		}
-		ExpectApplied(ctx, env.Client, nodeClass)
-
-		ec2InstanceTypes := []*ec2.InstanceTypeInfo{
-			{
-				InstanceType: lo.ToPtr("t3.medium"),
-				MemoryInfo: &ec2.MemoryInfo{
-					SizeInMiB: lo.ToPtr(reportedMemoryCapacity),
-				},
-			},
-		}
-		awsEnv.EC2API.DescribeInstanceTypesOutput.Set(&ec2.DescribeInstanceTypesOutput{
-			InstanceTypes: ec2InstanceTypes,
-		})
-
-		Expect(controller.Reconcile(ctx)).To(Succeed())
-
-		overhead, ok := instancetype.MemoryOverheadCacheMiB.Get("t3.medium-test-nodeclass")
-		Expect(ok).To(BeTrue())
-		Expect(overhead).To(Equal(reportedMemoryCapacity - actualMemoryCapacity))
 	})
 })

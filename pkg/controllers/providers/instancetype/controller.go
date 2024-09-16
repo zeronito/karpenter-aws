@@ -17,7 +17,6 @@ package instancetype
 import (
 	"context"
 	"fmt"
-	"sigs.k8s.io/controller-runtime/pkg/client"
 	"time"
 
 	"github.com/awslabs/operatorpkg/singleton"
@@ -33,13 +32,11 @@ import (
 
 type Controller struct {
 	instancetypeProvider instancetype.Provider
-	kubeClient           client.Client
 }
 
-func NewController(instancetypeProvider instancetype.Provider, kubeClient client.Client) *Controller {
+func NewController(instancetypeProvider instancetype.Provider) *Controller {
 	return &Controller{
 		instancetypeProvider: instancetypeProvider,
-		kubeClient:           kubeClient,
 	}
 }
 
@@ -49,9 +46,6 @@ func (c *Controller) Reconcile(ctx context.Context) (reconcile.Result, error) {
 	work := []func(ctx context.Context) error{
 		c.instancetypeProvider.UpdateInstanceTypes,
 		c.instancetypeProvider.UpdateInstanceTypeOfferings,
-		func(ctx context.Context) error {
-			return c.instancetypeProvider.UpdateInstanceTypeMemoryOverhead(ctx, c.kubeClient)
-		},
 	}
 	errs := make([]error, len(work))
 	lop.ForEach(work, func(f func(ctx context.Context) error, i int) {
