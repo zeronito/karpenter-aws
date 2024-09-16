@@ -17,12 +17,17 @@ package memoryoverhead_test
 import (
 	"context"
 	"fmt"
+	controllersinstancetype "github.com/aws/karpenter-provider-aws/pkg/controllers/providers/instancetype"
 	controllersmemoryoverhead "github.com/aws/karpenter-provider-aws/pkg/controllers/providers/instancetype/memoryoverhead"
+	"github.com/aws/karpenter-provider-aws/pkg/fake"
+	"github.com/samber/lo"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"sigs.k8s.io/controller-runtime/pkg/client"
+	karpv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
+	"sigs.k8s.io/karpenter/pkg/cloudprovider"
 	"testing"
 
-	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/karpenter/pkg/test/v1alpha1"
 
 	corev1 "k8s.io/api/core/v1"
@@ -30,8 +35,6 @@ import (
 	coretest "sigs.k8s.io/karpenter/pkg/test"
 
 	"github.com/aws/aws-sdk-go/service/ec2"
-	"github.com/samber/lo"
-
 	"github.com/aws/karpenter-provider-aws/pkg/apis"
 	v1 "github.com/aws/karpenter-provider-aws/pkg/apis/v1"
 	"github.com/aws/karpenter-provider-aws/pkg/operator/options"
@@ -47,7 +50,10 @@ var ctx context.Context
 var stop context.CancelFunc
 var env *coretest.Environment
 var awsEnv *test.Environment
-var memOverheadController *controllersmemoryoverhead.Controller
+var controller *controllersmemoryoverhead.Controller
+var instanceTypeController *controllersinstancetype.Controller
+
+var nodeClass *v1.EC2NodeClass
 
 func TestAWS(t *testing.T) {
 	ctx = TestContextWithLogger(t)
@@ -61,7 +67,9 @@ var _ = BeforeSuite(func() {
 	ctx = options.ToContext(ctx, test.Options())
 	ctx, stop = context.WithCancel(ctx)
 	awsEnv = test.NewEnvironment(ctx, env)
-	memOverheadController = controllersmemoryoverhead.NewController(env.Client, awsEnv.InstanceTypesProvider)
+	nodeClass = test.EC2NodeClass()
+	controller = controllersmemoryoverhead.NewController(env.Client, awsEnv.InstanceTypesProvider)
+	instanceTypeController = controllersinstancetype.NewController(awsEnv.InstanceTypesProvider)
 })
 
 var _ = AfterSuite(func() {
@@ -73,6 +81,14 @@ var _ = BeforeEach(func() {
 	ctx = coreoptions.ToContext(ctx, coretest.Options())
 	ctx = options.ToContext(ctx, test.Options())
 	awsEnv.Reset()
+	ec2InstanceTypes := fake.MakeInstances()
+	ec2Offerings := fake.MakeInstanceOfferings(ec2InstanceTypes)
+	awsEnv.EC2API.DescribeInstanceTypesOutput.Set(&ec2.DescribeInstanceTypesOutput{
+		InstanceTypes: ec2InstanceTypes,
+	})
+	awsEnv.EC2API.DescribeInstanceTypeOfferingsOutput.Set(&ec2.DescribeInstanceTypeOfferingsOutput{
+		InstanceTypeOfferings: ec2Offerings,
+	})
 })
 
 var _ = AfterEach(func() {
@@ -81,16 +97,20 @@ var _ = AfterEach(func() {
 
 var _ = Describe("MemoryOverhead", func() {
 	It("should update instance type memory overhead based on node capacities", func() {
+		ExpectApplied(ctx, env.Client, nodeClass)
+		Expect(awsEnv.InstanceTypesProvider.UpdateInstanceTypes(ctx)).To(Succeed())
+		Expect(awsEnv.InstanceTypesProvider.UpdateInstanceTypeOfferings(ctx)).To(Succeed())
+
 		actualMemoryCapacity := int64(3840)
-		reportedMemoryCapacity := int64(4096)
 		node := &corev1.Node{
 			ObjectMeta: metav1.ObjectMeta{
 				Name: "test-node",
 				Labels: map[string]string{
 					corev1.LabelInstanceTypeStable: "t3.medium",
+					karpv1.NodeRegisteredLabelKey:  "true",
 				},
 				Annotations: map[string]string{
-					v1.AnnotationEC2NodeClassHash: "node-class-hash",
+					v1.AnnotationEC2NodeClassHash: nodeClass.Hash(),
 				},
 			},
 			Status: corev1.NodeStatus{
@@ -100,54 +120,13 @@ var _ = Describe("MemoryOverhead", func() {
 			},
 		}
 		ExpectApplied(ctx, env.Client, node)
-
-		nodeClass := &v1.EC2NodeClass{
-			ObjectMeta: metav1.ObjectMeta{
-				Name: "test-nodeclass",
-				Annotations: map[string]string{
-					v1.AnnotationEC2NodeClassHash: "node-class-hash",
-				},
-			},
-			Status: v1.EC2NodeClassStatus{
-				AMIs: []v1.AMI{{
-					ID: "ami-12345678",
-				}},
-				Subnets: []v1.Subnet{
-					{
-						ID:   "subnet-test1",
-						Zone: "test-zone-1a",
-					},
-					{
-						ID:   "subnet-test2",
-						Zone: "test-zone-1b",
-					},
-					{
-						ID:   "subnet-test3",
-						Zone: "test-zone-1c",
-					},
-				},
-			},
-		}
-		ExpectApplied(ctx, env.Client, nodeClass)
-
-		ec2InstanceTypes := []*ec2.InstanceTypeInfo{
-			{
-				InstanceType: lo.ToPtr("t3.medium"),
-				MemoryInfo: &ec2.MemoryInfo{
-					SizeInMiB: lo.ToPtr(reportedMemoryCapacity),
-				},
-			},
-		}
-		awsEnv.EC2API.DescribeInstanceTypesOutput.Set(&ec2.DescribeInstanceTypesOutput{
-			InstanceTypes: ec2InstanceTypes,
-		})
-
-		Expect(awsEnv.InstanceTypesProvider.UpdateInstanceTypes(ctx)).To(Succeed())
-		ExpectReconcileSucceeded(ctx, memOverheadController, client.ObjectKey{})
-
+		ExpectReconcileSucceeded(ctx, controller, client.ObjectKey{})
 		instanceTypes, err := awsEnv.InstanceTypesProvider.List(ctx, &v1.KubeletConfiguration{}, nodeClass)
 		Expect(err).To(BeNil())
-		Expect(instanceTypes).To(HaveLen(1))
-		Expect(instanceTypes[0].Capacity.Memory().Value() / 1024 / 1024).To(Equal(actualMemoryCapacity))
+		i, ok := lo.Find(instanceTypes, func(i *cloudprovider.InstanceType) bool {
+			return i.Name == "t3.medium"
+		})
+		Expect(ok).To(BeTrue())
+		Expect(i.Capacity.Memory().Value() / 1024 / 1024).To(Equal(actualMemoryCapacity))
 	})
 })
