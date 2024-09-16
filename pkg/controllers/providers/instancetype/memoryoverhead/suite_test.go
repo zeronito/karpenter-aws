@@ -34,7 +34,6 @@ import (
 
 	"github.com/aws/karpenter-provider-aws/pkg/apis"
 	v1 "github.com/aws/karpenter-provider-aws/pkg/apis/v1"
-	controllersinstancetype "github.com/aws/karpenter-provider-aws/pkg/controllers/providers/instancetype"
 	"github.com/aws/karpenter-provider-aws/pkg/operator/options"
 	"github.com/aws/karpenter-provider-aws/pkg/test"
 
@@ -48,7 +47,6 @@ var ctx context.Context
 var stop context.CancelFunc
 var env *coretest.Environment
 var awsEnv *test.Environment
-var insTypeController *controllersinstancetype.Controller
 var memOverheadController *controllersmemoryoverhead.Controller
 
 func TestAWS(t *testing.T) {
@@ -63,7 +61,6 @@ var _ = BeforeSuite(func() {
 	ctx = options.ToContext(ctx, test.Options())
 	ctx, stop = context.WithCancel(ctx)
 	awsEnv = test.NewEnvironment(ctx, env)
-	insTypeController = controllersinstancetype.NewController(awsEnv.InstanceTypesProvider)
 	memOverheadController = controllersmemoryoverhead.NewController(env.Client, awsEnv.InstanceTypesProvider)
 })
 
@@ -75,7 +72,6 @@ var _ = AfterSuite(func() {
 var _ = BeforeEach(func() {
 	ctx = coreoptions.ToContext(ctx, coretest.Options())
 	ctx = options.ToContext(ctx, test.Options())
-
 	awsEnv.Reset()
 })
 
