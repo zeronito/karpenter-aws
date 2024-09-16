@@ -160,6 +160,7 @@ func NewOperator(ctx context.Context, operator *operator.Operator) (context.Cont
 	instanceTypeProvider := instancetype.NewDefaultProvider(
 		*sess.Config.Region,
 		cache.New(awscache.InstanceTypesAndZonesTTL, awscache.DefaultCleanupInterval),
+		cache.New(awscache.VMMemoryOverheadMebibytesTTL, awscache.DefaultCleanupInterval),
 		ec2api,
 		subnetProvider,
 		unavailableOfferingsCache,

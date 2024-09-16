@@ -75,7 +75,8 @@ type DefaultProvider struct {
 	muInstanceTypeOfferings sync.RWMutex
 	instanceTypeOfferings   map[string]sets.Set[string]
 
-	instanceTypesCache *cache.Cache
+	instanceTypesCache    *cache.Cache
+	vmMemoryOverheadCache *cache.Cache
 
 	unavailableOfferings *awscache.UnavailableOfferings
 	cm                   *pretty.ChangeMonitor
@@ -85,7 +86,7 @@ type DefaultProvider struct {
 	instanceTypeOfferingsSeqNum uint64
 }
 
-func NewDefaultProvider(region string, instanceTypesCache *cache.Cache, ec2api ec2iface.EC2API, subnetProvider subnet.Provider,
+func NewDefaultProvider(region string, instanceTypesCache *cache.Cache, vmMemoryOverheadCache *cache.Cache, ec2api ec2iface.EC2API, subnetProvider subnet.Provider,
 	unavailableOfferingsCache *awscache.UnavailableOfferings, pricingProvider pricing.Provider) *DefaultProvider {
 	return &DefaultProvider{
 		ec2api:                ec2api,
@@ -95,6 +96,7 @@ func NewDefaultProvider(region string, instanceTypesCache *cache.Cache, ec2api e
 		instanceTypesInfo:     []*ec2.InstanceTypeInfo{},
 		instanceTypeOfferings: map[string]sets.Set[string]{},
 		instanceTypesCache:    instanceTypesCache,
+		vmMemoryOverheadCache: vmMemoryOverheadCache,
 		unavailableOfferings:  unavailableOfferingsCache,
 		cm:                    pretty.NewChangeMonitor(),
 		instanceTypesSeqNum:   0,
@@ -165,12 +167,17 @@ func (p *DefaultProvider) List(ctx context.Context, kc *v1.KubeletConfiguration,
 			instanceTypeLabel: *i.InstanceType,
 		}).Set(float64(aws.Int64Value(i.MemoryInfo.SizeInMiB) * 1024 * 1024))
 
+		var vmMemoryOverhead int64
+		if cached, ok := p.vmMemoryOverheadCache.Get(fmt.Sprintf("%s-%d", *i.InstanceType, amiHash)); ok {
+			vmMemoryOverhead = cached.(int64)
+		}
+
 		// !!! Important !!!
 		// Any changes to the values passed into the NewInstanceType method will require making updates to the cache key
 		// so that Karpenter is able to cache the set of InstanceTypes based on values that alter the set of instance types
 		// !!! Important !!!
 		return NewInstanceType(ctx, i, p.region,
-			amiHash, nodeClass.Spec.BlockDeviceMappings, nodeClass.Spec.InstanceStorePolicy,
+			vmMemoryOverhead, nodeClass.Spec.BlockDeviceMappings, nodeClass.Spec.InstanceStorePolicy,
 			kc.MaxPods, kc.PodsPerCore, kc.KubeReserved, kc.SystemReserved, kc.EvictionHard, kc.EvictionSoft,
 			amiFamily, p.createOfferings(ctx, i, allZones, p.instanceTypeOfferings[aws.StringValue(i.InstanceType)], nodeClass.Status.Subnets),
 		)
@@ -278,9 +285,6 @@ func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context, 
 		return *i.InstanceType, i
 	})
 
-	overheadMemoryMap := make(map[string]int64)
-	var mu sync.Mutex
-
 	workqueue.ParallelizeUntil(ctx, 100, len(nodeList.Items), func(i int) {
 		node := nodeList.Items[i]
 
@@ -306,17 +310,9 @@ func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context, 
 		reportedMiB := instanceTypeInfo.MemoryInfo.SizeInMiB
 		actualMib := node.Status.Capacity.Memory().Value() / 1024 / 1024
 		overhead := *reportedMiB - actualMib
-		cacheKey := fmt.Sprintf("%s-%d", instanceType, amiHash)
-		mu.Lock()
-		overheadMemoryMap[cacheKey] = overhead
-		mu.Unlock()
+		key := fmt.Sprintf("%s-%d", instanceType, amiHash)
+		p.vmMemoryOverheadCache.SetDefault(key, overhead)
 	})
-
-	// Update the cache with the calculated overhead
-	for k, v := range overheadMemoryMap {
-		MemoryOverheadCacheMiB.SetDefault(k, v)
-	}
-
 	return nil
 }
 
