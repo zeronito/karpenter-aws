@@ -38,7 +38,7 @@ type Options struct {
 	AWSENILimitedPodDensity bool
 	ContainerRuntime        *string
 	CustomUserData          *string
-	InstanceStorePolicy     *v1.InstanceStorePolicy
+	RAIDInstanceStorage     bool
 }
 
 func (o Options) kubeletExtraArgs() (args []string) {
