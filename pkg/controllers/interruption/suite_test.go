@@ -25,9 +25,9 @@ import (
 
 	"sigs.k8s.io/karpenter/pkg/test/v1alpha1"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	servicesqs "github.com/aws/aws-sdk-go/service/sqs"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	servicesqs "github.com/aws/aws-sdk-go-v2/service/sqs"
+	servicesqstypes "github.com/aws/aws-sdk-go-v2/service/sqs/types"
 	"github.com/samber/lo"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -40,6 +40,8 @@ import (
 	"sigs.k8s.io/karpenter/pkg/events"
 	coreoptions "sigs.k8s.io/karpenter/pkg/operator/options"
 	coretest "sigs.k8s.io/karpenter/pkg/test"
+
+	"github.com/aws/smithy-go"
 
 	"github.com/aws/karpenter-provider-aws/pkg/apis"
 	awscache "github.com/aws/karpenter-provider-aws/pkg/cache"
@@ -208,7 +210,7 @@ var _ = Describe("InterruptionHandling", func() {
 			Expect(sqsapi.DeleteMessageBehavior.SuccessfulCalls()).To(Equal(100))
 		})
 		It("should delete a message when the message can't be parsed", func() {
-			badMessage := &servicesqs.Message{
+			badMessage := &servicesqstypes.Message{
 				Body: aws.String(string(lo.Must(json.Marshal(map[string]string{
 					"field1": "value1",
 					"field2": "value2",
@@ -253,11 +255,11 @@ var _ = Describe("InterruptionHandling", func() {
 
 var _ = Describe("Error Handling", func() {
 	It("should send an error on polling when QueueNotExists", func() {
-		sqsapi.ReceiveMessageBehavior.Error.Set(awsErrWithCode(servicesqs.ErrCodeQueueDoesNotExist), fake.MaxCalls(0))
+		sqsapi.ReceiveMessageBehavior.Error.Set(smithyErrWithCode("QueueDoesNotExist"), fake.MaxCalls(0))
 		_ = ExpectSingletonReconcileFailed(ctx, controller)
 	})
 	It("should send an error on polling when AccessDenied", func() {
-		sqsapi.ReceiveMessageBehavior.Error.Set(awsErrWithCode("AccessDenied"), fake.MaxCalls(0))
+		sqsapi.ReceiveMessageBehavior.Error.Set(smithyErrWithCode("AccessDenied"), fake.MaxCalls(0))
 		_ = ExpectSingletonReconcileFailed(ctx, controller)
 	})
 	It("should not return an error when deleting a nodeClaim that is already deleted", func() {
@@ -267,21 +269,25 @@ var _ = Describe("Error Handling", func() {
 })
 
 func ExpectMessagesCreated(messages ...interface{}) {
-	raw := lo.Map(messages, func(m interface{}, _ int) *servicesqs.Message {
-		return &servicesqs.Message{
+	raw := lo.Map(messages, func(m interface{}, _ int) *servicesqstypes.Message {
+		return &servicesqstypes.Message{
 			Body:      aws.String(string(lo.Must(json.Marshal(m)))),
 			MessageId: aws.String(string(uuid.NewUUID())),
 		}
 	})
+
 	sqsapi.ReceiveMessageBehavior.Output.Set(
 		&servicesqs.ReceiveMessageOutput{
-			Messages: raw,
+			Messages: lo.FromSlicePtr(raw),
 		},
 	)
 }
 
-func awsErrWithCode(code string) awserr.Error {
-	return awserr.New(code, "", fmt.Errorf(""))
+func smithyErrWithCode(code string) smithy.APIError {
+	return &smithy.GenericAPIError{
+		Code:    code,
+		Message: "error",
+	}
 }
 
 func spotInterruptionMessage(involvedInstanceID string) spotinterruption.Message {

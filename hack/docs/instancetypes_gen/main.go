@@ -23,10 +23,10 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/ec2"
-	"github.com/patrickmn/go-cache"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/ec2"
+	ec2types "github.com/aws/aws-sdk-go-v2/service/ec2/types"
+	pricingC "github.com/aws/aws-sdk-go-v2/service/pricing"
 	"github.com/samber/lo"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
@@ -47,6 +47,7 @@ import (
 	"github.com/aws/karpenter-provider-aws/pkg/providers/pricing"
 	"github.com/aws/karpenter-provider-aws/pkg/providers/subnet"
 	"github.com/aws/karpenter-provider-aws/pkg/test"
+	"github.com/patrickmn/go-cache"
 
 	"sigs.k8s.io/karpenter/pkg/cloudprovider"
 	"sigs.k8s.io/karpenter/pkg/utils/resources"
@@ -87,6 +88,7 @@ func main() {
 
 	lo.Must0(os.Setenv("SYSTEM_NAMESPACE", "karpenter"))
 	lo.Must0(os.Setenv("AWS_SDK_LOAD_CONFIG", "true"))
+	lo.Must0(os.Setenv("AWS_REGION", "us-east-1"))
 
 	ctx := coreoptions.ToContext(context.Background(), coretest.Options())
 	ctx = options.ToContext(ctx, test.Options(test.OptionsFields{
@@ -103,19 +105,19 @@ func main() {
 
 	log.Println("writing output to", outputFileName)
 	fmt.Fprintf(f, `---
-title: "Instance Types"
-linkTitle: "Instance Types"
-weight: 100
+	title: "Instance Types"
+	linkTitle: "Instance Types"
+	weight: 100
 
-description: >
-  Evaluate Instance Type Resources
----
-`)
+	description: >
+	Evaluate Instance Type Resources
+	---
+	`)
 	fmt.Fprintln(f, "<!-- this document is generated from hack/docs/instancetypes_gen_docs.go -->")
 	fmt.Fprintln(f, `AWS instance types offer varying resources and can be selected by labels. The values provided
-below are the resources available with some assumptions and after the instance overhead has been subtracted:
-- `+"`blockDeviceMappings` are not configured"+`
-- `+"`amiFamily` is set to `AL2023`")
+	below are the resources available with some assumptions and after the instance overhead has been subtracted:
+	- `+"`blockDeviceMappings` are not configured"+`
+	- `+"`amiFamily` is set to `AL2023`")
 
 	// generate a map of family -> map[instance type name]instance types along with some other sorted lists.  The sorted lists ensure we
 	// generate consistent docs every run.
@@ -125,20 +127,25 @@ below are the resources available with some assumptions and after the instance o
 
 	// Iterate through regions and take the union of instance types we discover across both
 	for _, region := range []string{"us-east-1", "us-west-2"} {
-		sess := session.Must(session.NewSession(&aws.Config{Region: lo.ToPtr(region)}))
-		ec2api := ec2.New(sess)
-		subnetProvider := subnet.NewDefaultProvider(ec2api, cache.New(awscache.DefaultTTL, awscache.DefaultCleanupInterval), cache.New(awscache.AvailableIPAddressTTL, awscache.DefaultCleanupInterval), cache.New(awscache.AssociatePublicIPAddressTTL, awscache.DefaultCleanupInterval))
+		cfg, err := config.LoadDefaultConfig(context.Background())
+		if err != nil {
+			log.Fatalf("failed to load AWS config: %v", err)
+		}
+
+		ec2Client := ec2.NewFromConfig(cfg)
+		pricingClient := pricingC.NewFromConfig(cfg)
+		subnetProvider := subnet.NewDefaultProvider(ec2Client, cache.New(awscache.DefaultTTL, awscache.DefaultCleanupInterval), cache.New(awscache.AvailableIPAddressTTL, awscache.DefaultCleanupInterval), cache.New(awscache.AssociatePublicIPAddressTTL, awscache.DefaultCleanupInterval))
 		instanceTypeProvider := instancetype.NewDefaultProvider(
 			region,
 			cache.New(awscache.InstanceTypesAndZonesTTL, awscache.DefaultCleanupInterval),
-			ec2api,
+			ec2Client,
 			subnetProvider,
 			awscache.NewUnavailableOfferings(),
 			pricing.NewDefaultProvider(
 				ctx,
-				pricing.NewAPI(sess, *sess.Config.Region),
-				ec2api,
-				*sess.Config.Region,
+				pricingClient,
+				ec2Client,
+				region,
 			),
 		)
 		if err = instanceTypeProvider.UpdateInstanceTypes(ctx); err != nil {
@@ -166,7 +173,7 @@ below are the resources available with some assumptions and after the instance o
 		if err != nil {
 			log.Fatalf("listing subnets, %s", err)
 		}
-		nodeClass.Status.Subnets = lo.Map(subnets, func(ec2subnet *ec2.Subnet, _ int) v1.Subnet {
+		nodeClass.Status.Subnets = lo.Map(subnets, func(ec2subnet *ec2types.Subnet, _ int) v1.Subnet {
 			return v1.Subnet{
 				ID:   *ec2subnet.SubnetId,
 				Zone: *ec2subnet.AvailabilityZone,
@@ -188,73 +195,76 @@ below are the resources available with some assumptions and after the instance o
 			for resourceName := range it.Capacity {
 				resourceNameMap.Insert(string(resourceName))
 			}
+			for resourceName := range it.Capacity {
+				resourceNameMap.Insert(string(resourceName))
+			}
 		}
-	}
+		familyNames := lo.Keys(families)
+		sort.Strings(familyNames)
 
-	familyNames := lo.Keys(families)
-	sort.Strings(familyNames)
+		// we don't want to show a few labels that will vary amongst regions
+		delete(labelNameMap, corev1.LabelTopologyZone)
+		delete(labelNameMap, v1.LabelTopologyZoneID)
+		delete(labelNameMap, karpv1.CapacityTypeLabelKey)
 
-	// we don't want to show a few labels that will vary amongst regions
-	delete(labelNameMap, corev1.LabelTopologyZone)
-	delete(labelNameMap, v1.LabelTopologyZoneID)
-	delete(labelNameMap, karpv1.CapacityTypeLabelKey)
+		labelNames := lo.Keys(labelNameMap)
 
-	labelNames := lo.Keys(labelNameMap)
+		sort.Strings(labelNames)
+		resourceNames := lo.Keys(resourceNameMap)
+		sort.Strings(resourceNames)
 
-	sort.Strings(labelNames)
-	resourceNames := lo.Keys(resourceNameMap)
-	sort.Strings(resourceNames)
+		for _, familyName := range familyNames {
+			fmt.Fprintf(f, "## %s Family\n", familyName)
 
-	for _, familyName := range familyNames {
-		fmt.Fprintf(f, "## %s Family\n", familyName)
+			instanceTypes := lo.MapToSlice(families[familyName], func(_ string, it *cloudprovider.InstanceType) *cloudprovider.InstanceType { return it })
 
-		instanceTypes := lo.MapToSlice(families[familyName], func(_ string, it *cloudprovider.InstanceType) *cloudprovider.InstanceType { return it })
-		// sort the instance types within the family, we sort by CPU and memory which should be a pretty good ordering
-		sort.Slice(instanceTypes, func(a, b int) bool {
-			lhs := instanceTypes[a]
-			rhs := instanceTypes[b]
-			lhsResources := lhs.Capacity
-			rhsResources := rhs.Capacity
-			if cpuCmp := resources.Cmp(*lhsResources.Cpu(), *rhsResources.Cpu()); cpuCmp != 0 {
-				return cpuCmp < 0
-			}
-			if memCmp := resources.Cmp(*lhsResources.Memory(), *rhsResources.Memory()); memCmp != 0 {
-				return memCmp < 0
-			}
-			return lhs.Name < rhs.Name
-		})
-
-		for _, it := range instanceTypes {
-			fmt.Fprintf(f, "### `%s`\n", it.Name)
-			minusOverhead := resources.Subtract(it.Capacity, it.Overhead.Total())
-			fmt.Fprintln(f, "#### Labels")
-			fmt.Fprintln(f, " | Label | Value |")
-			fmt.Fprintln(f, " |--|--|")
-			for _, label := range labelNames {
-				req, ok := it.Requirements[label]
-				if !ok {
-					continue
+			// sort the instance types within the family, we sort by CPU and memory which should be a pretty good ordering
+			sort.Slice(instanceTypes, func(a, b int) bool {
+				lhs := instanceTypes[a]
+				rhs := instanceTypes[b]
+				lhsResources := lhs.Capacity
+				rhsResources := rhs.Capacity
+				if cpuCmp := resources.Cmp(*lhsResources.Cpu(), *rhsResources.Cpu()); cpuCmp != 0 {
+					return cpuCmp < 0
 				}
-				if req.Key == corev1.LabelTopologyRegion {
-					continue
+				if memCmp := resources.Cmp(*lhsResources.Memory(), *rhsResources.Memory()); memCmp != 0 {
+					return memCmp < 0
 				}
-				if len(req.Values()) == 1 {
-					fmt.Fprintf(f, " |%s|%s|\n", label, req.Values()[0])
+				return lhs.Name < rhs.Name
+			})
+
+			for _, it := range instanceTypes {
+				fmt.Fprintf(f, "### `%s`\n", it.Name)
+				minusOverhead := resources.Subtract(it.Capacity, it.Overhead.Total())
+				fmt.Fprintln(f, "#### Labels")
+				fmt.Fprintln(f, " | Label | Value |")
+				fmt.Fprintln(f, " |--|--|")
+				for _, label := range labelNames {
+					req, ok := it.Requirements[label]
+					if !ok {
+						continue
+					}
+					if req.Key == corev1.LabelTopologyRegion {
+						continue
+					}
+					if len(req.Values()) == 1 {
+						fmt.Fprintf(f, " |%s|%s|\n", label, req.Values()[0])
+					}
 				}
-			}
-			fmt.Fprintln(f, "#### Resources")
-			fmt.Fprintln(f, " | Resource | Quantity |")
-			fmt.Fprintln(f, " |--|--|")
-			for _, resourceName := range resourceNames {
-				quantity := minusOverhead[corev1.ResourceName(resourceName)]
-				if quantity.IsZero() {
-					continue
+				fmt.Fprintln(f, "#### Resources")
+				fmt.Fprintln(f, " | Resource | Quantity |")
+				fmt.Fprintln(f, " |--|--|")
+				for _, resourceName := range resourceNames {
+					quantity := minusOverhead[corev1.ResourceName(resourceName)]
+					if quantity.IsZero() {
+						continue
+					}
+					if corev1.ResourceName(resourceName) == corev1.ResourceEphemeralStorage {
+						i64, _ := quantity.AsInt64()
+						quantity = *resource.NewQuantity(i64, resource.BinarySI)
+					}
+					fmt.Fprintf(f, " |%s|%s|\n", resourceName, quantity.String())
 				}
-				if corev1.ResourceName(resourceName) == corev1.ResourceEphemeralStorage {
-					i64, _ := quantity.AsInt64()
-					quantity = *resource.NewQuantity(i64, resource.BinarySI)
-				}
-				fmt.Fprintf(f, " |%s|%s|\n", resourceName, quantity.String())
 			}
 		}
 	}

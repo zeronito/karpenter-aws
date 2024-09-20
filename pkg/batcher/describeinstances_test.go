@@ -19,8 +19,9 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/ec2"
+	ec2types "github.com/aws/aws-sdk-go-v2/service/ec2/types"
 
 	"github.com/aws/karpenter-provider-aws/pkg/batcher"
 	"github.com/aws/karpenter-provider-aws/pkg/fake"
@@ -40,7 +41,7 @@ var _ = Describe("DescribeInstances Batcher", func() {
 	It("should batch input into a single call", func() {
 		instanceIDs := []string{"i-1", "i-2", "i-3", "i-4", "i-5"}
 		for _, id := range instanceIDs {
-			fakeEC2API.Instances.Store(id, &ec2.Instance{InstanceId: aws.String(id)})
+			fakeEC2API.Instances.Store(id, &ec2types.Instance{InstanceId: aws.String(id)})
 		}
 
 		var wg sync.WaitGroup
@@ -51,7 +52,7 @@ var _ = Describe("DescribeInstances Batcher", func() {
 				defer GinkgoRecover()
 				defer wg.Done()
 				rsp, err := cfb.DescribeInstances(ctx, &ec2.DescribeInstancesInput{
-					InstanceIds: []*string{aws.String(instanceID)},
+					InstanceIds: []string{*aws.String(instanceID)},
 				})
 				Expect(err).To(BeNil())
 				atomic.AddInt64(&receivedInstance, 1)
@@ -69,7 +70,7 @@ var _ = Describe("DescribeInstances Batcher", func() {
 	It("should batch input correctly when receiving multiple calls with the same instance id", func() {
 		instanceIDs := []string{"i-1", "i-1", "i-1", "i-2", "i-2"}
 		for _, id := range instanceIDs {
-			fakeEC2API.Instances.Store(id, &ec2.Instance{InstanceId: aws.String(id)})
+			fakeEC2API.Instances.Store(id, &ec2types.Instance{InstanceId: aws.String(id)})
 		}
 
 		var wg sync.WaitGroup
@@ -80,7 +81,7 @@ var _ = Describe("DescribeInstances Batcher", func() {
 				defer GinkgoRecover()
 				defer wg.Done()
 				rsp, err := cfb.DescribeInstances(ctx, &ec2.DescribeInstancesInput{
-					InstanceIds: []*string{aws.String(instanceID)},
+					InstanceIds: []string{*aws.String(instanceID)},
 				})
 				Expect(err).To(BeNil())
 				atomic.AddInt64(&receivedInstance, 1)
@@ -99,9 +100,9 @@ var _ = Describe("DescribeInstances Batcher", func() {
 		instanceIDs := []string{"i-1", "i-2", "i-3"}
 		// Output with only the first Instance
 		fakeEC2API.DescribeInstancesBehavior.Output.Set(&ec2.DescribeInstancesOutput{
-			Reservations: []*ec2.Reservation{
+			Reservations: []ec2types.Reservation{
 				{
-					Instances: []*ec2.Instance{
+					Instances: []ec2types.Instance{
 						{
 							InstanceId: aws.String("i-1"),
 						},
@@ -109,9 +110,9 @@ var _ = Describe("DescribeInstances Batcher", func() {
 				},
 			},
 		})
-		runningFilter := &ec2.Filter{
+		runningFilter := &ec2types.Filter{
 			Name:   aws.String("instance-state-name"),
-			Values: []*string{aws.String(ec2.InstanceStateNameRunning)},
+			Values: []string{*aws.String(string(ec2types.InstanceStateNameRunning))},
 		}
 		var wg sync.WaitGroup
 		var receivedInstance int64
@@ -122,8 +123,8 @@ var _ = Describe("DescribeInstances Batcher", func() {
 				defer GinkgoRecover()
 				defer wg.Done()
 				rsp, err := cfb.DescribeInstances(ctx, &ec2.DescribeInstancesInput{
-					InstanceIds: []*string{aws.String(instanceID)},
-					Filters:     []*ec2.Filter{runningFilter},
+					InstanceIds: []string{*aws.String(instanceID)},
+					Filters:     []ec2types.Filter{*runningFilter},
 				})
 				Expect(err).To(BeNil())
 				if len(rsp.Reservations) > 0 {
@@ -169,7 +170,7 @@ var _ = Describe("DescribeInstances Batcher", func() {
 				defer GinkgoRecover()
 				defer wg.Done()
 				_, err := cfb.DescribeInstances(ctx, &ec2.DescribeInstancesInput{
-					InstanceIds: []*string{aws.String(instanceID)},
+					InstanceIds: []string{*aws.String(instanceID)},
 				})
 				Expect(err).ToNot(BeNil())
 			}(instanceID)

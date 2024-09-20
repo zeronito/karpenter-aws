@@ -25,8 +25,8 @@ import (
 	"github.com/samber/lo"
 	"k8s.io/apimachinery/pkg/api/resource"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/ec2"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	ec2types "github.com/aws/aws-sdk-go-v2/service/ec2/types"
 
 	"github.com/aws/karpenter-provider-aws/pkg/providers/amifamily/bootstrap"
 	"github.com/aws/karpenter-provider-aws/pkg/providers/ssm"
@@ -51,10 +51,11 @@ func (w Windows) DescribeImageQuery(ctx context.Context, ssmProvider ssm.Provide
 	if err != nil {
 		return DescribeImageQuery{}, fmt.Errorf(`failed to discover any AMIs for alias "windows%s@%s"`, w.Version, amiVersion)
 	}
+
 	return DescribeImageQuery{
-		Filters: []*ec2.Filter{&ec2.Filter{
-			Name:   lo.ToPtr("image-id"),
-			Values: []*string{lo.ToPtr(imageID)},
+		Filters: []ec2types.Filter{{
+			Name:   aws.String("image-id"),
+			Values: []string{imageID},
 		}},
 		KnownRequirements: map[string][]scheduling.Requirements{
 			imageID: []scheduling.Requirements{scheduling.NewRequirements(

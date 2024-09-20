@@ -18,10 +18,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go-v2/aws"
 	corev1 "k8s.io/api/core/v1"
 
-	"github.com/aws/aws-sdk-go/service/ec2"
+	ec2types "github.com/aws/aws-sdk-go-v2/service/ec2/types"
 	"github.com/samber/lo"
 
 	"sigs.k8s.io/karpenter/pkg/scheduling"
@@ -40,6 +40,7 @@ type AL2 struct {
 }
 
 func (a AL2) DescribeImageQuery(ctx context.Context, ssmProvider ssm.Provider, k8sVersion string, amiVersion string) (DescribeImageQuery, error) {
+	imageIDs := []string{}
 	ids := map[string][]Variant{}
 	for path, variants := range map[string][]Variant{
 		fmt.Sprintf("/aws/service/eks/optimized-ami/%s/amazon-linux-2/%s/image_id", k8sVersion, lo.Ternary(
@@ -62,17 +63,18 @@ func (a AL2) DescribeImageQuery(ctx context.Context, ssmProvider ssm.Provider, k
 		if err != nil {
 			continue
 		}
+		imageIDs = append(imageIDs, imageID)
 		ids[imageID] = variants
 	}
 	// Failed to discover any AMIs, we should short circuit AMI discovery
-	if len(ids) == 0 {
+	if len(imageIDs) == 0 {
 		return DescribeImageQuery{}, fmt.Errorf(`failed to discover any AMIs for alias "al2@%s"`, amiVersion)
 	}
 
 	return DescribeImageQuery{
-		Filters: []*ec2.Filter{{
-			Name:   lo.ToPtr("image-id"),
-			Values: lo.ToSlicePtr(lo.Keys(ids)),
+		Filters: []ec2types.Filter{{
+			Name:   aws.String("image-id"),
+			Values: imageIDs,
 		}},
 		KnownRequirements: lo.MapValues(ids, func(variants []Variant, _ string) []scheduling.Requirements {
 			return lo.Map(variants, func(v Variant, _ int) scheduling.Requirements { return v.Requirements() })
