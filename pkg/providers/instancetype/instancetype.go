@@ -309,9 +309,12 @@ func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context, 
 		// Calculate memory overhead and store to the map
 		reportedMiB := instanceTypeInfo.MemoryInfo.SizeInMiB
 		actualMib := node.Status.Capacity.Memory().Value() / 1024 / 1024
-		overhead := *reportedMiB - actualMib
+		overhead := *reportedMiB - actualMib + 1 // Add 1MiB variance buffer
 		key := fmt.Sprintf("%s-%d", instanceType, amiHash)
-		p.vmMemoryOverheadCache.SetDefault(key, overhead)
+		// Add calculated overhead if not found, refresh if equal, or update if higher value is found
+		if cachedOverhead, found := p.vmMemoryOverheadCache.Get(key); !found || overhead >= cachedOverhead.(int64) {
+			p.vmMemoryOverheadCache.SetDefault(key, overhead)
+		}
 	})
 	return nil
 }
