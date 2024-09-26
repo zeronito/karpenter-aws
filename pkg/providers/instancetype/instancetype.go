@@ -17,7 +17,10 @@ package instancetype
 import (
 	"context"
 	"fmt"
+	"k8s.io/apimachinery/pkg/labels"
+	"k8s.io/client-go/util/workqueue"
 	"net/http"
+	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sync"
 	"sync/atomic"
 
@@ -52,6 +55,7 @@ type Provider interface {
 	List(context.Context, *v1.KubeletConfiguration, *v1.EC2NodeClass) ([]*cloudprovider.InstanceType, error)
 	UpdateInstanceTypes(ctx context.Context) error
 	UpdateInstanceTypeOfferings(ctx context.Context) error
+	UpdateInstanceTypeMemoryOverhead(ctx context.Context, kubeClient client.Client) error
 }
 
 type DefaultProvider struct {
@@ -71,7 +75,8 @@ type DefaultProvider struct {
 	muInstanceTypeOfferings sync.RWMutex
 	instanceTypeOfferings   map[string]sets.Set[string]
 
-	instanceTypesCache *cache.Cache
+	instanceTypesCache    *cache.Cache
+	vmMemoryOverheadCache *cache.Cache
 
 	unavailableOfferings *awscache.UnavailableOfferings
 	cm                   *pretty.ChangeMonitor
@@ -81,7 +86,7 @@ type DefaultProvider struct {
 	instanceTypeOfferingsSeqNum uint64
 }
 
-func NewDefaultProvider(region string, instanceTypesCache *cache.Cache, ec2api ec2iface.EC2API, subnetProvider subnet.Provider,
+func NewDefaultProvider(region string, instanceTypesCache *cache.Cache, vmMemoryOverheadCache *cache.Cache, ec2api ec2iface.EC2API, subnetProvider subnet.Provider,
 	unavailableOfferingsCache *awscache.UnavailableOfferings, pricingProvider pricing.Provider) *DefaultProvider {
 	return &DefaultProvider{
 		ec2api:                ec2api,
@@ -91,6 +96,7 @@ func NewDefaultProvider(region string, instanceTypesCache *cache.Cache, ec2api e
 		instanceTypesInfo:     []*ec2.InstanceTypeInfo{},
 		instanceTypeOfferings: map[string]sets.Set[string]{},
 		instanceTypesCache:    instanceTypesCache,
+		vmMemoryOverheadCache: vmMemoryOverheadCache,
 		unavailableOfferings:  unavailableOfferingsCache,
 		cm:                    pretty.NewChangeMonitor(),
 		instanceTypesSeqNum:   0,
@@ -124,7 +130,8 @@ func (p *DefaultProvider) List(ctx context.Context, kc *v1.KubeletConfiguration,
 	subnetZonesHash, _ := hashstructure.Hash(subnetZones, hashstructure.FormatV2, &hashstructure.HashOptions{SlicesAsSets: true})
 	kcHash, _ := hashstructure.Hash(kc, hashstructure.FormatV2, &hashstructure.HashOptions{SlicesAsSets: true})
 	blockDeviceMappingsHash, _ := hashstructure.Hash(nodeClass.Spec.BlockDeviceMappings, hashstructure.FormatV2, &hashstructure.HashOptions{SlicesAsSets: true})
-	key := fmt.Sprintf("%d-%d-%d-%016x-%016x-%016x-%s-%s",
+	amiHash, _ := hashstructure.Hash(nodeClass.Status.AMIs, hashstructure.FormatV2, nil)
+	key := fmt.Sprintf("%d-%d-%d-%016x-%016x-%016x-%s-%d",
 		p.instanceTypesSeqNum,
 		p.instanceTypeOfferingsSeqNum,
 		p.unavailableOfferings.SeqNum,
@@ -132,7 +139,7 @@ func (p *DefaultProvider) List(ctx context.Context, kc *v1.KubeletConfiguration,
 		kcHash,
 		blockDeviceMappingsHash,
 		lo.FromPtr((*string)(nodeClass.Spec.InstanceStorePolicy)),
-		nodeClass.AMIFamily(),
+		amiHash,
 	)
 	if item, ok := p.instanceTypesCache.Get(key); ok {
 		// Ensure what's returned from this function is a shallow-copy of the slice (not a deep-copy of the data itself)
@@ -160,12 +167,17 @@ func (p *DefaultProvider) List(ctx context.Context, kc *v1.KubeletConfiguration,
 			instanceTypeLabel: *i.InstanceType,
 		}).Set(float64(aws.Int64Value(i.MemoryInfo.SizeInMiB) * 1024 * 1024))
 
+		var vmMemoryOverhead int64
+		if cached, ok := p.vmMemoryOverheadCache.Get(fmt.Sprintf("%s-%d", *i.InstanceType, amiHash)); ok {
+			vmMemoryOverhead = cached.(int64)
+		}
+
 		// !!! Important !!!
 		// Any changes to the values passed into the NewInstanceType method will require making updates to the cache key
 		// so that Karpenter is able to cache the set of InstanceTypes based on values that alter the set of instance types
 		// !!! Important !!!
 		return NewInstanceType(ctx, i, p.region,
-			nodeClass.Spec.BlockDeviceMappings, nodeClass.Spec.InstanceStorePolicy,
+			vmMemoryOverhead, nodeClass.Spec.BlockDeviceMappings, nodeClass.Spec.InstanceStorePolicy,
 			kc.MaxPods, kc.PodsPerCore, kc.KubeReserved, kc.SystemReserved, kc.EvictionHard, kc.EvictionSoft,
 			amiFamily, p.createOfferings(ctx, i, allZones, p.instanceTypeOfferings[aws.StringValue(i.InstanceType)], nodeClass.Status.Subnets),
 		)
@@ -249,6 +261,61 @@ func (p *DefaultProvider) UpdateInstanceTypeOfferings(ctx context.Context) error
 		log.FromContext(ctx).WithValues("instance-type-count", len(instanceTypeOfferings)).V(1).Info("discovered offerings for instance types")
 	}
 	p.instanceTypeOfferings = instanceTypeOfferings
+	return nil
+}
+
+func (p *DefaultProvider) UpdateInstanceTypeMemoryOverhead(ctx context.Context, kubeClient client.Client) error {
+	nodeClassList := &v1.EC2NodeClassList{}
+	if err := kubeClient.List(ctx, nodeClassList); err != nil {
+		return fmt.Errorf("failed to list nodeclasses: %w", err)
+	}
+
+	nodeClassMap := lo.Associate(nodeClassList.Items, func(nodeClass v1.EC2NodeClass) (string, v1.EC2NodeClass) {
+		return nodeClass.Hash(), nodeClass
+	})
+
+	nodeList := &corev1.NodeList{}
+	if err := kubeClient.List(ctx, nodeList, &client.ListOptions{
+		LabelSelector: labels.SelectorFromSet(map[string]string{karpv1.NodeRegisteredLabelKey: "true"}),
+	}); err != nil {
+		return fmt.Errorf("failed to list nodes: %w", err)
+	}
+
+	instanceTypeInfoMap := lo.Associate(p.instanceTypesInfo, func(i *ec2.InstanceTypeInfo) (string, *ec2.InstanceTypeInfo) {
+		return *i.InstanceType, i
+	})
+
+	workqueue.ParallelizeUntil(ctx, 100, len(nodeList.Items), func(i int) {
+		node := nodeList.Items[i]
+
+		// Get the EC2NodeClass for the current node based on the hash annotation
+		nodeClass, ok := nodeClassMap[node.Annotations[v1.AnnotationEC2NodeClassHash]]
+		if !ok {
+			return
+		}
+
+		instanceType, ok := node.Labels[corev1.LabelInstanceTypeStable]
+		if !ok {
+			return
+		}
+
+		instanceTypeInfo, ok := instanceTypeInfoMap[instanceType]
+		if !ok || instanceTypeInfo == nil {
+			return
+		}
+
+		amiHash, _ := hashstructure.Hash(nodeClass.Status.AMIs, hashstructure.FormatV2, nil)
+
+		// Calculate memory overhead and store to the map
+		reportedMiB := instanceTypeInfo.MemoryInfo.SizeInMiB
+		actualMib := node.Status.Capacity.Memory().Value() / 1024 / 1024
+		overhead := *reportedMiB - actualMib + 1 // Add 1MiB variance buffer
+		key := fmt.Sprintf("%s-%d", instanceType, amiHash)
+		// Add calculated overhead if not found, refresh if equal, or update if higher value is found
+		if cachedOverhead, found := p.vmMemoryOverheadCache.Get(key); !found || overhead >= cachedOverhead.(int64) {
+			p.vmMemoryOverheadCache.SetDefault(key, overhead)
+		}
+	})
 	return nil
 }
 
