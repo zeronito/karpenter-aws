@@ -25,6 +25,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
+	karpv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
 	"sigs.k8s.io/karpenter/pkg/operator/injection"
 	"time"
 )
@@ -54,12 +55,20 @@ func (c *Controller) Register(_ context.Context, m manager.Manager) error {
 		Named("instancetypes.memoryoverhead").
 		For(&corev1.Node{}).
 		WithEventFilter(predicate.Funcs{
-			// Only trigger reconciliation on node creation events
+
 			CreateFunc: func(_ event.CreateEvent) bool {
-				return true
-			},
-			UpdateFunc: func(_ event.UpdateEvent) bool {
 				return false
+			},
+			// Only trigger reconciliation once a node becomes registered
+			UpdateFunc: func(e event.UpdateEvent) bool {
+				oldNode, okOld := e.ObjectOld.(*corev1.Node)
+				newNode, okNew := e.ObjectNew.(*corev1.Node)
+				if !okOld || !okNew {
+					return false
+				}
+
+				return oldNode.Labels[karpv1.NodeRegisteredLabelKey] == "" && newNode.Labels[karpv1.NodeRegisteredLabelKey] == "true"
+
 			},
 			DeleteFunc: func(_ event.DeleteEvent) bool {
 				return false
