@@ -26,6 +26,7 @@ Karpenter surfaces environment variables and CLI parameters to allow you to conf
 | KARPENTER_SERVICE | \-\-karpenter-service | The Karpenter Service name for the dynamic webhook certificate|
 | KUBE_CLIENT_BURST | \-\-kube-client-burst | The maximum allowed burst of queries to the kube-apiserver (default = 300)|
 | KUBE_CLIENT_QPS | \-\-kube-client-qps | The smoothed rate of qps to kube-apiserver (default = 200)|
+| LEADER_ELECTION_NAMESPACE | \-\-leader-election-namespace | Leader election namespace to create and monitor the lease if running outside the cluster|
 | LOG_ERROR_OUTPUT_PATHS | \-\-log-error-output-paths | Optional comma separated paths for logging error output (default = stderr)|
 | LOG_LEVEL | \-\-log-level | Log verbosity level. Can be one of 'debug', 'info', or 'error' (default = info)|
 | LOG_OUTPUT_PATHS | \-\-log-output-paths | Optional comma separated paths for directing log output (default = stdout)|

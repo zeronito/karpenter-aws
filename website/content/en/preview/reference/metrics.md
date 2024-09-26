@@ -64,6 +64,14 @@ Number of nodes terminated in total by Karpenter. Labeled by owning nodepool.
 Node system daemon overhead are the resources reserved for system overhead, the difference between the node's capacity and allocatable values are reported by the status.
 - Stability Level: BETA
 
+### `karpenter_nodes_lifetime_duration_seconds`
+The lifetime duration of the nodes since creation.
+- Stability Level: ALPHA
+
+### `karpenter_nodes_current_lifetime_seconds`
+Node age in seconds
+- Stability Level: ALPHA
+
 ### `karpenter_nodes_created_total`
 Number of nodes created in total by Karpenter. Labeled by owning nodepool.
 - Stability Level: STABLE
@@ -81,6 +89,16 @@ Pod state is the current state of pods. This metric can be used several ways as 
 ### `karpenter_pods_startup_duration_seconds`
 The time from pod creation until the pod is running.
 - Stability Level: STABLE
+
+## Termination Metrics
+
+### `operator_termination_duration_seconds`
+The amount of time taken by an object to terminate completely.
+- Stability Level: ALPHA
+
+### `operator_termination_current_time_seconds`
+The current amount of time in seconds that an object has been in terminating state.
+- Stability Level: ALPHA
 
 ## Voluntary Disruption Metrics
 
@@ -142,6 +160,12 @@ Amount of time an interruption message is on the queue before it is processed by
 Count of messages deleted from the SQS queue.
 - Stability Level: STABLE
 
+## Cluster Metrics
+
+### `karpenter_cluster_utilization_percent`
+Utilization of allocatable resources by pod requests
+- Stability Level: ALPHA
+
 ## Cluster State Metrics
 
 ### `karpenter_cluster_state_synced`
@@ -200,6 +224,10 @@ Total number of reconciliations per controller
 
 ### `controller_runtime_reconcile_time_seconds`
 Length of time per reconciliation per controller
+- Stability Level: STABLE
+
+### `controller_runtime_reconcile_panics_total`
+Total number of reconciliation panics per controller
 - Stability Level: STABLE
 
 ### `controller_runtime_reconcile_errors_total`
