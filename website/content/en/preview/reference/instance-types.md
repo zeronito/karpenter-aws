@@ -180,7 +180,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|350|
  |karpenter.k8s.aws/instance-memory|1740|
  |karpenter.k8s.aws/instance-size|medium|
  |kubernetes.io/arch|amd64|
@@ -204,7 +203,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|1680|
  |karpenter.k8s.aws/instance-memory|7168|
  |karpenter.k8s.aws/instance-size|xlarge|
  |kubernetes.io/arch|amd64|
@@ -229,7 +227,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|32|
  |karpenter.k8s.aws/instance-memory|3840|
  |karpenter.k8s.aws/instance-size|large|
  |kubernetes.io/arch|amd64|
@@ -253,7 +250,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|80|
  |karpenter.k8s.aws/instance-memory|7680|
  |karpenter.k8s.aws/instance-size|xlarge|
  |kubernetes.io/arch|amd64|
@@ -277,7 +273,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|160|
  |karpenter.k8s.aws/instance-memory|15360|
  |karpenter.k8s.aws/instance-size|2xlarge|
  |kubernetes.io/arch|amd64|
@@ -301,7 +296,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|320|
  |karpenter.k8s.aws/instance-memory|30720|
  |karpenter.k8s.aws/instance-size|4xlarge|
  |kubernetes.io/arch|amd64|
@@ -325,7 +319,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|640|
  |karpenter.k8s.aws/instance-memory|61440|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -918,7 +911,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|75|
+ |karpenter.k8s.aws/instance-local-nvme|75|
  |karpenter.k8s.aws/instance-memory|4096|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -945,7 +938,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|150|
+ |karpenter.k8s.aws/instance-local-nvme|150|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -972,7 +965,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|300|
+ |karpenter.k8s.aws/instance-local-nvme|300|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -999,7 +992,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -1026,7 +1019,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1200|
+ |karpenter.k8s.aws/instance-local-nvme|1200|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -1053,7 +1046,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|98304|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -1080,7 +1073,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2400|
+ |karpenter.k8s.aws/instance-local-nvme|2400|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -1107,7 +1100,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -1135,7 +1128,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|50|
+ |karpenter.k8s.aws/instance-local-nvme|50|
  |karpenter.k8s.aws/instance-memory|4096|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -1162,7 +1155,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|100|
+ |karpenter.k8s.aws/instance-local-nvme|100|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -1189,7 +1182,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|200|
+ |karpenter.k8s.aws/instance-local-nvme|200|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -1216,7 +1209,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|400|
+ |karpenter.k8s.aws/instance-local-nvme|400|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -1243,7 +1236,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|900|
+ |karpenter.k8s.aws/instance-local-nvme|900|
  |karpenter.k8s.aws/instance-memory|73728|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|9xlarge|
@@ -1270,7 +1263,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|98304|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -1297,7 +1290,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|147456|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|18xlarge|
@@ -1324,7 +1317,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -1351,7 +1344,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -2089,7 +2082,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|59|
+ |karpenter.k8s.aws/instance-local-nvme|59|
  |karpenter.k8s.aws/instance-memory|2048|
  |karpenter.k8s.aws/instance-network-bandwidth|500|
  |karpenter.k8s.aws/instance-size|medium|
@@ -2116,7 +2109,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|4096|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -2143,7 +2136,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -2170,7 +2163,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -2197,7 +2190,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -2224,7 +2217,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -2251,7 +2244,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|98304|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -2278,7 +2271,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -2305,7 +2298,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -2806,7 +2799,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|4096|
  |karpenter.k8s.aws/instance-network-bandwidth|781|
  |karpenter.k8s.aws/instance-size|large|
@@ -2833,7 +2826,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|1562|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -2860,7 +2853,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|3125|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -2887,7 +2880,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|6250|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -2914,7 +2907,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -2941,7 +2934,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|98304|
  |karpenter.k8s.aws/instance-network-bandwidth|18750|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -2968,7 +2961,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -2995,7 +2988,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|5700|
+ |karpenter.k8s.aws/instance-local-nvme|5700|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|37500|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -3022,7 +3015,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -3050,7 +3043,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -3881,6 +3874,151 @@ below are the resources available with some assumptions and after the instance o
  |pods|737|
  |vpc.amazonaws.com/efa|1|
  |vpc.amazonaws.com/pod-eni|107|
+## c7g-flex Family
+### `c7g-flex.medium`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|c|
+ |karpenter.k8s.aws/instance-cpu|1|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|c7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|2048|
+ |karpenter.k8s.aws/instance-size|medium|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|c7g-flex.medium|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|940m|
+ |ephemeral-storage|17Gi|
+ |memory|1392Mi|
+ |pods|8|
+### `c7g-flex.large`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|c|
+ |karpenter.k8s.aws/instance-cpu|2|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|c7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|4096|
+ |karpenter.k8s.aws/instance-size|large|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|c7g-flex.large|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|1930m|
+ |ephemeral-storage|17Gi|
+ |memory|3055Mi|
+ |pods|29|
+### `c7g-flex.xlarge`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|c|
+ |karpenter.k8s.aws/instance-cpu|4|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|c7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|8192|
+ |karpenter.k8s.aws/instance-size|xlarge|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|c7g-flex.xlarge|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|3920m|
+ |ephemeral-storage|17Gi|
+ |memory|6525Mi|
+ |pods|58|
+### `c7g-flex.2xlarge`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|c|
+ |karpenter.k8s.aws/instance-cpu|8|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|c7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|16384|
+ |karpenter.k8s.aws/instance-size|2xlarge|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|c7g-flex.2xlarge|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|7910m|
+ |ephemeral-storage|17Gi|
+ |memory|14103Mi|
+ |pods|58|
+### `c7g-flex.4xlarge`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|c|
+ |karpenter.k8s.aws/instance-cpu|16|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|c7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|32768|
+ |karpenter.k8s.aws/instance-size|4xlarge|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|c7g-flex.4xlarge|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|15890m|
+ |ephemeral-storage|17Gi|
+ |memory|27322Mi|
+ |pods|234|
+### `c7g-flex.8xlarge`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|c|
+ |karpenter.k8s.aws/instance-cpu|32|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|c7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|65536|
+ |karpenter.k8s.aws/instance-size|8xlarge|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|c7g-flex.8xlarge|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|31850m|
+ |ephemeral-storage|17Gi|
+ |memory|57632Mi|
+ |pods|234|
 ## c7gd Family
 ### `c7gd.medium`
 #### Labels
@@ -3894,7 +4032,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|59|
+ |karpenter.k8s.aws/instance-local-nvme|59|
  |karpenter.k8s.aws/instance-memory|2048|
  |karpenter.k8s.aws/instance-network-bandwidth|520|
  |karpenter.k8s.aws/instance-size|medium|
@@ -3921,7 +4059,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|4096|
  |karpenter.k8s.aws/instance-network-bandwidth|937|
  |karpenter.k8s.aws/instance-size|large|
@@ -3948,7 +4086,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|1876|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -3975,7 +4113,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|3750|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -4002,7 +4140,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|7500|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -4029,7 +4167,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|15000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -4056,7 +4194,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|98304|
  |karpenter.k8s.aws/instance-network-bandwidth|22500|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -4083,7 +4221,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|30000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -4111,7 +4249,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|c7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|30000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -4797,7 +4935,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|6144|
  |karpenter.k8s.aws/instance-memory|31232|
  |karpenter.k8s.aws/instance-size|xlarge|
  |kubernetes.io/arch|amd64|
@@ -4822,7 +4959,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|12288|
  |karpenter.k8s.aws/instance-memory|62464|
  |karpenter.k8s.aws/instance-size|2xlarge|
  |kubernetes.io/arch|amd64|
@@ -4847,7 +4983,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|24576|
  |karpenter.k8s.aws/instance-memory|124928|
  |karpenter.k8s.aws/instance-size|4xlarge|
  |kubernetes.io/arch|amd64|
@@ -4872,7 +5007,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|49152|
  |karpenter.k8s.aws/instance-memory|249856|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -4899,7 +5033,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|5940|
+ |karpenter.k8s.aws/instance-local-nvme|5940|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|3000|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -4926,7 +5060,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|11880|
+ |karpenter.k8s.aws/instance-local-nvme|11880|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|6000|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -4953,7 +5087,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|23760|
+ |karpenter.k8s.aws/instance-local-nvme|23760|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -4980,7 +5114,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|47520|
+ |karpenter.k8s.aws/instance-local-nvme|47520|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -5008,7 +5142,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|27960|
+ |karpenter.k8s.aws/instance-local-nvme|27960|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|6000|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -5035,7 +5169,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|55920|
+ |karpenter.k8s.aws/instance-local-nvme|55920|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -5062,7 +5196,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|111840|
+ |karpenter.k8s.aws/instance-local-nvme|111840|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -5089,7 +5223,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|167760|
+ |karpenter.k8s.aws/instance-local-nvme|167760|
  |karpenter.k8s.aws/instance-memory|98304|
  |karpenter.k8s.aws/instance-network-bandwidth|40000|
  |karpenter.k8s.aws/instance-size|6xlarge|
@@ -5116,7 +5250,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|223680|
+ |karpenter.k8s.aws/instance-local-nvme|223680|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -5143,7 +5277,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|d3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|335520|
+ |karpenter.k8s.aws/instance-local-nvme|335520|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|75000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -5175,7 +5309,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|32768|
  |karpenter.k8s.aws/instance-gpu-name|gaudi-hl-205|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|4000|
+ |karpenter.k8s.aws/instance-local-nvme|4000|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|400000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -5237,7 +5371,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|f1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|470|
+ |karpenter.k8s.aws/instance-local-nvme|470|
  |karpenter.k8s.aws/instance-memory|124928|
  |karpenter.k8s.aws/instance-size|2xlarge|
  |kubernetes.io/arch|amd64|
@@ -5262,7 +5396,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|f1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|940|
+ |karpenter.k8s.aws/instance-local-nvme|940|
  |karpenter.k8s.aws/instance-memory|249856|
  |karpenter.k8s.aws/instance-size|4xlarge|
  |kubernetes.io/arch|amd64|
@@ -5287,7 +5421,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|f1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|3760|
+ |karpenter.k8s.aws/instance-local-nvme|3760|
  |karpenter.k8s.aws/instance-memory|999424|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -5438,7 +5572,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|8192|
  |karpenter.k8s.aws/instance-gpu-name|radeon-pro-v520|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|150|
+ |karpenter.k8s.aws/instance-local-nvme|150|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|2000|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -5470,7 +5604,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|8192|
  |karpenter.k8s.aws/instance-gpu-name|radeon-pro-v520|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|300|
+ |karpenter.k8s.aws/instance-local-nvme|300|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|4167|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -5502,7 +5636,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|8192|
  |karpenter.k8s.aws/instance-gpu-name|radeon-pro-v520|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|8333|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -5534,7 +5668,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|8192|
  |karpenter.k8s.aws/instance-gpu-name|radeon-pro-v520|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1200|
+ |karpenter.k8s.aws/instance-local-nvme|1200|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|15000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -5566,7 +5700,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|8192|
  |karpenter.k8s.aws/instance-gpu-name|radeon-pro-v520|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2400|
+ |karpenter.k8s.aws/instance-local-nvme|2400|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -5599,7 +5733,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|16384|
  |karpenter.k8s.aws/instance-gpu-name|t4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|125|
+ |karpenter.k8s.aws/instance-local-nvme|125|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -5631,7 +5765,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|16384|
  |karpenter.k8s.aws/instance-gpu-name|t4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|225|
+ |karpenter.k8s.aws/instance-local-nvme|225|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -5663,7 +5797,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|16384|
  |karpenter.k8s.aws/instance-gpu-name|t4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|225|
+ |karpenter.k8s.aws/instance-local-nvme|225|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -5695,7 +5829,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|16384|
  |karpenter.k8s.aws/instance-gpu-name|t4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|900|
+ |karpenter.k8s.aws/instance-local-nvme|900|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -5728,7 +5862,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|16384|
  |karpenter.k8s.aws/instance-gpu-name|t4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|900|
+ |karpenter.k8s.aws/instance-local-nvme|900|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -5761,7 +5895,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|16384|
  |karpenter.k8s.aws/instance-gpu-name|t4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|900|
+ |karpenter.k8s.aws/instance-local-nvme|900|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -5794,7 +5928,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|16384|
  |karpenter.k8s.aws/instance-gpu-name|t4|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -5828,7 +5962,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|24576|
  |karpenter.k8s.aws/instance-gpu-name|a10g|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|250|
+ |karpenter.k8s.aws/instance-local-nvme|250|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -5860,7 +5994,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|24576|
  |karpenter.k8s.aws/instance-gpu-name|a10g|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|450|
+ |karpenter.k8s.aws/instance-local-nvme|450|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -5892,7 +6026,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|24576|
  |karpenter.k8s.aws/instance-gpu-name|a10g|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -5924,7 +6058,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|24576|
  |karpenter.k8s.aws/instance-gpu-name|a10g|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|900|
+ |karpenter.k8s.aws/instance-local-nvme|900|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -5957,7 +6091,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|24576|
  |karpenter.k8s.aws/instance-gpu-name|a10g|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|40000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -5990,7 +6124,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|24576|
  |karpenter.k8s.aws/instance-gpu-name|a10g|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -6023,7 +6157,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|24576|
  |karpenter.k8s.aws/instance-gpu-name|a10g|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -6056,7 +6190,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|24576|
  |karpenter.k8s.aws/instance-gpu-name|a10g|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|48xlarge|
@@ -6277,7 +6411,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|22888|
  |karpenter.k8s.aws/instance-gpu-name|l4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|250|
+ |karpenter.k8s.aws/instance-local-nvme|250|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -6309,7 +6443,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|22888|
  |karpenter.k8s.aws/instance-gpu-name|l4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|450|
+ |karpenter.k8s.aws/instance-local-nvme|450|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -6341,7 +6475,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|22888|
  |karpenter.k8s.aws/instance-gpu-name|l4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -6373,7 +6507,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|22888|
  |karpenter.k8s.aws/instance-gpu-name|l4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|900|
+ |karpenter.k8s.aws/instance-local-nvme|900|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -6406,7 +6540,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|91553|
  |karpenter.k8s.aws/instance-gpu-name|l4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3760|
+ |karpenter.k8s.aws/instance-local-nvme|3760|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|40000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -6439,7 +6573,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|22888|
  |karpenter.k8s.aws/instance-gpu-name|l4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1880|
+ |karpenter.k8s.aws/instance-local-nvme|1880|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -6472,7 +6606,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|91553|
  |karpenter.k8s.aws/instance-gpu-name|l4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3760|
+ |karpenter.k8s.aws/instance-local-nvme|3760|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -6505,7 +6639,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|183105|
  |karpenter.k8s.aws/instance-gpu-name|l4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7520|
+ |karpenter.k8s.aws/instance-local-nvme|7520|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|48xlarge|
@@ -6539,7 +6673,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|45776|
  |karpenter.k8s.aws/instance-gpu-name|l40s|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|250|
+ |karpenter.k8s.aws/instance-local-nvme|250|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -6571,7 +6705,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|45776|
  |karpenter.k8s.aws/instance-gpu-name|l40s|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|450|
+ |karpenter.k8s.aws/instance-local-nvme|450|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -6603,7 +6737,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|45776|
  |karpenter.k8s.aws/instance-gpu-name|l40s|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -6635,7 +6769,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|45776|
  |karpenter.k8s.aws/instance-gpu-name|l40s|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|900|
+ |karpenter.k8s.aws/instance-local-nvme|900|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -6668,7 +6802,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|183105|
  |karpenter.k8s.aws/instance-gpu-name|l40s|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -6701,7 +6835,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|45776|
  |karpenter.k8s.aws/instance-gpu-name|l40s|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|35000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -6734,7 +6868,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|183105|
  |karpenter.k8s.aws/instance-gpu-name|l40s|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|200000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -6767,7 +6901,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|366211|
  |karpenter.k8s.aws/instance-gpu-name|l40s|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|1572864|
  |karpenter.k8s.aws/instance-network-bandwidth|400000|
  |karpenter.k8s.aws/instance-size|48xlarge|
@@ -6801,7 +6935,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|22888|
  |karpenter.k8s.aws/instance-gpu-name|l4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -6833,7 +6967,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|22888|
  |karpenter.k8s.aws/instance-gpu-name|l4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|900|
+ |karpenter.k8s.aws/instance-local-nvme|900|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -6863,7 +6997,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|h1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|2000|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -6889,7 +7022,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|h1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|4000|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -6915,7 +7047,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|h1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|8000|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -6941,7 +7072,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|h1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|16000|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -7046,7 +7176,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|800|
  |karpenter.k8s.aws/instance-memory|31232|
  |karpenter.k8s.aws/instance-size|xlarge|
  |kubernetes.io/arch|amd64|
@@ -7070,7 +7199,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|1600|
  |karpenter.k8s.aws/instance-memory|62464|
  |karpenter.k8s.aws/instance-size|2xlarge|
  |kubernetes.io/arch|amd64|
@@ -7094,7 +7222,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|3200|
  |karpenter.k8s.aws/instance-memory|124928|
  |karpenter.k8s.aws/instance-size|4xlarge|
  |kubernetes.io/arch|amd64|
@@ -7118,7 +7245,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|6400|
  |karpenter.k8s.aws/instance-memory|249856|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -7145,7 +7271,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|475|
+ |karpenter.k8s.aws/instance-local-nvme|475|
  |karpenter.k8s.aws/instance-memory|15616|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -7171,7 +7297,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|31232|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -7197,7 +7323,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|62464|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -7223,7 +7349,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|124928|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -7249,7 +7375,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|249856|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -7275,7 +7401,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|15200|
+ |karpenter.k8s.aws/instance-local-nvme|15200|
  |karpenter.k8s.aws/instance-memory|499712|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -7301,7 +7427,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|15200|
+ |karpenter.k8s.aws/instance-local-nvme|15200|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -7329,7 +7455,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1250|
+ |karpenter.k8s.aws/instance-local-nvme|1250|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|2100|
  |karpenter.k8s.aws/instance-size|large|
@@ -7356,7 +7482,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2500|
+ |karpenter.k8s.aws/instance-local-nvme|2500|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|4200|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -7383,7 +7509,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|5000|
+ |karpenter.k8s.aws/instance-local-nvme|5000|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|8400|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -7410,7 +7536,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7500|
+ |karpenter.k8s.aws/instance-local-nvme|7500|
  |karpenter.k8s.aws/instance-memory|98304|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|3xlarge|
@@ -7437,7 +7563,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|15000|
+ |karpenter.k8s.aws/instance-local-nvme|15000|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|6xlarge|
@@ -7464,7 +7590,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|30000|
+ |karpenter.k8s.aws/instance-local-nvme|30000|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -7492,7 +7618,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|60000|
+ |karpenter.k8s.aws/instance-local-nvme|60000|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -7520,7 +7646,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i3en|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|60000|
+ |karpenter.k8s.aws/instance-local-nvme|60000|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -7549,7 +7675,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4g|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|468|
+ |karpenter.k8s.aws/instance-local-nvme|468|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|781|
  |karpenter.k8s.aws/instance-size|large|
@@ -7576,7 +7702,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4g|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|937|
+ |karpenter.k8s.aws/instance-local-nvme|937|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|1875|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -7603,7 +7729,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4g|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1875|
+ |karpenter.k8s.aws/instance-local-nvme|1875|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|4687|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -7630,7 +7756,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4g|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3750|
+ |karpenter.k8s.aws/instance-local-nvme|3750|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|9375|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -7657,7 +7783,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4g|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7500|
+ |karpenter.k8s.aws/instance-local-nvme|7500|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|18750|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -7684,7 +7810,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4g|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|15000|
+ |karpenter.k8s.aws/instance-local-nvme|15000|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|37500|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -7713,7 +7839,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4i|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|468|
+ |karpenter.k8s.aws/instance-local-nvme|468|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|781|
  |karpenter.k8s.aws/instance-size|large|
@@ -7739,7 +7865,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4i|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|937|
+ |karpenter.k8s.aws/instance-local-nvme|937|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|1875|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -7766,7 +7892,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4i|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1875|
+ |karpenter.k8s.aws/instance-local-nvme|1875|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|4687|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -7793,7 +7919,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4i|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3750|
+ |karpenter.k8s.aws/instance-local-nvme|3750|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|9375|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -7820,7 +7946,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4i|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7500|
+ |karpenter.k8s.aws/instance-local-nvme|7500|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|18750|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -7847,7 +7973,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4i|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|11250|
+ |karpenter.k8s.aws/instance-local-nvme|11250|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|28120|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -7874,7 +8000,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4i|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|15000|
+ |karpenter.k8s.aws/instance-local-nvme|15000|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|37500|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -7901,7 +8027,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4i|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|22500|
+ |karpenter.k8s.aws/instance-local-nvme|22500|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|56250|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -7928,7 +8054,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4i|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|30000|
+ |karpenter.k8s.aws/instance-local-nvme|30000|
  |karpenter.k8s.aws/instance-memory|1048576|
  |karpenter.k8s.aws/instance-network-bandwidth|75000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -7956,7 +8082,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|i4i|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|30000|
+ |karpenter.k8s.aws/instance-local-nvme|30000|
  |karpenter.k8s.aws/instance-memory|1048576|
  |karpenter.k8s.aws/instance-network-bandwidth|75000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -7985,7 +8111,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|im4gn|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|937|
+ |karpenter.k8s.aws/instance-local-nvme|937|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|3125|
  |karpenter.k8s.aws/instance-size|large|
@@ -8012,7 +8138,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|im4gn|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1875|
+ |karpenter.k8s.aws/instance-local-nvme|1875|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|6250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -8039,7 +8165,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|im4gn|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3750|
+ |karpenter.k8s.aws/instance-local-nvme|3750|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -8066,7 +8192,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|im4gn|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7500|
+ |karpenter.k8s.aws/instance-local-nvme|7500|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -8093,7 +8219,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|im4gn|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|15000|
+ |karpenter.k8s.aws/instance-local-nvme|15000|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -8120,7 +8246,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|im4gn|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|30000|
+ |karpenter.k8s.aws/instance-local-nvme|30000|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -8392,7 +8518,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|is4gen|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|937|
+ |karpenter.k8s.aws/instance-local-nvme|937|
  |karpenter.k8s.aws/instance-memory|6144|
  |karpenter.k8s.aws/instance-network-bandwidth|1562|
  |karpenter.k8s.aws/instance-size|medium|
@@ -8419,7 +8545,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|is4gen|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1875|
+ |karpenter.k8s.aws/instance-local-nvme|1875|
  |karpenter.k8s.aws/instance-memory|12288|
  |karpenter.k8s.aws/instance-network-bandwidth|3125|
  |karpenter.k8s.aws/instance-size|large|
@@ -8446,7 +8572,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|is4gen|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3750|
+ |karpenter.k8s.aws/instance-local-nvme|3750|
  |karpenter.k8s.aws/instance-memory|24576|
  |karpenter.k8s.aws/instance-network-bandwidth|6250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -8473,7 +8599,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|is4gen|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7500|
+ |karpenter.k8s.aws/instance-local-nvme|7500|
  |karpenter.k8s.aws/instance-memory|49152|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -8500,7 +8626,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|is4gen|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|15000|
+ |karpenter.k8s.aws/instance-local-nvme|15000|
  |karpenter.k8s.aws/instance-memory|98304|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -8527,7 +8653,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|is4gen|
  |karpenter.k8s.aws/instance-generation|4|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|30000|
+ |karpenter.k8s.aws/instance-local-nvme|30000|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -8554,7 +8680,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|160|
  |karpenter.k8s.aws/instance-memory|1740|
  |karpenter.k8s.aws/instance-size|small|
  |kubernetes.io/arch|amd64|
@@ -8578,7 +8703,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|410|
  |karpenter.k8s.aws/instance-memory|3788|
  |karpenter.k8s.aws/instance-size|medium|
  |kubernetes.io/arch|amd64|
@@ -8602,7 +8726,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|840|
  |karpenter.k8s.aws/instance-memory|7680|
  |karpenter.k8s.aws/instance-size|large|
  |kubernetes.io/arch|amd64|
@@ -8626,7 +8749,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|1680|
  |karpenter.k8s.aws/instance-memory|15360|
  |karpenter.k8s.aws/instance-size|xlarge|
  |kubernetes.io/arch|amd64|
@@ -8651,7 +8773,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|420|
  |karpenter.k8s.aws/instance-memory|17510|
  |karpenter.k8s.aws/instance-size|xlarge|
  |kubernetes.io/arch|amd64|
@@ -8675,7 +8796,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|850|
  |karpenter.k8s.aws/instance-memory|35020|
  |karpenter.k8s.aws/instance-size|2xlarge|
  |kubernetes.io/arch|amd64|
@@ -8699,7 +8819,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m2|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|1680|
  |karpenter.k8s.aws/instance-memory|70041|
  |karpenter.k8s.aws/instance-size|4xlarge|
  |kubernetes.io/arch|amd64|
@@ -8724,7 +8843,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|4|
  |karpenter.k8s.aws/instance-memory|3840|
  |karpenter.k8s.aws/instance-size|medium|
  |kubernetes.io/arch|amd64|
@@ -8748,7 +8866,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|32|
  |karpenter.k8s.aws/instance-memory|7680|
  |karpenter.k8s.aws/instance-size|large|
  |kubernetes.io/arch|amd64|
@@ -8772,7 +8889,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|80|
  |karpenter.k8s.aws/instance-memory|15360|
  |karpenter.k8s.aws/instance-size|xlarge|
  |kubernetes.io/arch|amd64|
@@ -8796,7 +8912,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|160|
  |karpenter.k8s.aws/instance-memory|30720|
  |karpenter.k8s.aws/instance-size|2xlarge|
  |kubernetes.io/arch|amd64|
@@ -9413,7 +9528,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|75|
+ |karpenter.k8s.aws/instance-local-nvme|75|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -9440,7 +9555,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|150|
+ |karpenter.k8s.aws/instance-local-nvme|150|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -9467,7 +9582,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|300|
+ |karpenter.k8s.aws/instance-local-nvme|300|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -9494,7 +9609,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -9521,7 +9636,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1200|
+ |karpenter.k8s.aws/instance-local-nvme|1200|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|7500|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -9548,7 +9663,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -9575,7 +9690,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2400|
+ |karpenter.k8s.aws/instance-local-nvme|2400|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -9602,7 +9717,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -9630,7 +9745,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|75|
+ |karpenter.k8s.aws/instance-local-nvme|75|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -9657,7 +9772,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|150|
+ |karpenter.k8s.aws/instance-local-nvme|150|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -9684,7 +9799,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|300|
+ |karpenter.k8s.aws/instance-local-nvme|300|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -9711,7 +9826,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -9738,7 +9853,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1200|
+ |karpenter.k8s.aws/instance-local-nvme|1200|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -9765,7 +9880,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -9792,7 +9907,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2400|
+ |karpenter.k8s.aws/instance-local-nvme|2400|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -9819,7 +9934,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -9846,7 +9961,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -9874,7 +9989,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|75|
+ |karpenter.k8s.aws/instance-local-nvme|75|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|2100|
  |karpenter.k8s.aws/instance-size|large|
@@ -9901,7 +10016,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|150|
+ |karpenter.k8s.aws/instance-local-nvme|150|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|4100|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -9928,7 +10043,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|300|
+ |karpenter.k8s.aws/instance-local-nvme|300|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|8125|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -9955,7 +10070,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|16250|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -9982,7 +10097,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1200|
+ |karpenter.k8s.aws/instance-local-nvme|1200|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -10009,7 +10124,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -10036,7 +10151,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2400|
+ |karpenter.k8s.aws/instance-local-nvme|2400|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|75000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -10063,7 +10178,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -10091,7 +10206,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -11066,7 +11181,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|59|
+ |karpenter.k8s.aws/instance-local-nvme|59|
  |karpenter.k8s.aws/instance-memory|4096|
  |karpenter.k8s.aws/instance-network-bandwidth|500|
  |karpenter.k8s.aws/instance-size|medium|
@@ -11093,7 +11208,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -11120,7 +11235,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -11147,7 +11262,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -11174,7 +11289,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -11201,7 +11316,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -11228,7 +11343,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -11255,7 +11370,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -11282,7 +11397,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -11573,7 +11688,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|781|
  |karpenter.k8s.aws/instance-size|large|
@@ -11600,7 +11715,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|1562|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -11627,7 +11742,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|3125|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -11654,7 +11769,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|6250|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -11681,7 +11796,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -11708,7 +11823,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|18750|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -11735,7 +11850,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -11762,7 +11877,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|5700|
+ |karpenter.k8s.aws/instance-local-nvme|5700|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|37500|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -11789,7 +11904,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -11817,7 +11932,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -11846,7 +11961,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|3125|
  |karpenter.k8s.aws/instance-size|large|
@@ -11873,7 +11988,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|6250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -11900,7 +12015,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -11927,7 +12042,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -11954,7 +12069,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -11981,7 +12096,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|75000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -12008,7 +12123,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -12035,7 +12150,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|5700|
+ |karpenter.k8s.aws/instance-local-nvme|5700|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|150000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -12062,7 +12177,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|200000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -12090,7 +12205,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|200000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -12921,6 +13036,151 @@ below are the resources available with some assumptions and after the instance o
  |pods|737|
  |vpc.amazonaws.com/efa|1|
  |vpc.amazonaws.com/pod-eni|107|
+## m7g-flex Family
+### `m7g-flex.medium`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|m|
+ |karpenter.k8s.aws/instance-cpu|1|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|m7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|4096|
+ |karpenter.k8s.aws/instance-size|medium|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|m7g-flex.medium|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|940m|
+ |ephemeral-storage|17Gi|
+ |memory|3286Mi|
+ |pods|8|
+### `m7g-flex.large`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|m|
+ |karpenter.k8s.aws/instance-cpu|2|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|m7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|8192|
+ |karpenter.k8s.aws/instance-size|large|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|m7g-flex.large|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|1930m|
+ |ephemeral-storage|17Gi|
+ |memory|6844Mi|
+ |pods|29|
+### `m7g-flex.xlarge`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|m|
+ |karpenter.k8s.aws/instance-cpu|4|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|m7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|16384|
+ |karpenter.k8s.aws/instance-size|xlarge|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|m7g-flex.xlarge|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|3920m|
+ |ephemeral-storage|17Gi|
+ |memory|14103Mi|
+ |pods|58|
+### `m7g-flex.2xlarge`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|m|
+ |karpenter.k8s.aws/instance-cpu|8|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|m7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|32768|
+ |karpenter.k8s.aws/instance-size|2xlarge|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|m7g-flex.2xlarge|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|7910m|
+ |ephemeral-storage|17Gi|
+ |memory|29258Mi|
+ |pods|58|
+### `m7g-flex.4xlarge`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|m|
+ |karpenter.k8s.aws/instance-cpu|16|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|m7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|65536|
+ |karpenter.k8s.aws/instance-size|4xlarge|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|m7g-flex.4xlarge|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|15890m|
+ |ephemeral-storage|17Gi|
+ |memory|57632Mi|
+ |pods|234|
+### `m7g-flex.8xlarge`
+#### Labels
+ | Label | Value |
+ |--|--|
+ |karpenter.k8s.aws/instance-category|m|
+ |karpenter.k8s.aws/instance-cpu|32|
+ |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
+ |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
+ |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
+ |karpenter.k8s.aws/instance-family|m7g-flex|
+ |karpenter.k8s.aws/instance-generation|7|
+ |karpenter.k8s.aws/instance-hypervisor|nitro|
+ |karpenter.k8s.aws/instance-memory|131072|
+ |karpenter.k8s.aws/instance-size|8xlarge|
+ |kubernetes.io/arch|arm64|
+ |kubernetes.io/os|linux|
+ |node.kubernetes.io/instance-type|m7g-flex.8xlarge|
+#### Resources
+ | Resource | Quantity |
+ |--|--|
+ |cpu|31850m|
+ |ephemeral-storage|17Gi|
+ |memory|118253Mi|
+ |pods|234|
 ## m7gd Family
 ### `m7gd.medium`
 #### Labels
@@ -12934,7 +13194,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|59|
+ |karpenter.k8s.aws/instance-local-nvme|59|
  |karpenter.k8s.aws/instance-memory|4096|
  |karpenter.k8s.aws/instance-network-bandwidth|520|
  |karpenter.k8s.aws/instance-size|medium|
@@ -12961,7 +13221,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|937|
  |karpenter.k8s.aws/instance-size|large|
@@ -12988,7 +13248,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|1876|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -13015,7 +13275,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|3750|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -13042,7 +13302,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|7500|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -13069,7 +13329,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|15000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -13096,7 +13356,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|22500|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -13123,7 +13383,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|30000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -13151,7 +13411,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|m7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|30000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -13784,7 +14044,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|32768|
  |karpenter.k8s.aws/instance-gpu-name|v100|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -13818,7 +14078,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|40960|
  |karpenter.k8s.aws/instance-gpu-name|a100|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|8000|
+ |karpenter.k8s.aws/instance-local-nvme|8000|
  |karpenter.k8s.aws/instance-memory|1179648|
  |karpenter.k8s.aws/instance-network-bandwidth|400000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -13852,7 +14112,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-gpu-memory|81920|
  |karpenter.k8s.aws/instance-gpu-name|h100|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|30400|
+ |karpenter.k8s.aws/instance-local-nvme|30400|
  |karpenter.k8s.aws/instance-memory|2097152|
  |karpenter.k8s.aws/instance-network-bandwidth|3200000|
  |karpenter.k8s.aws/instance-size|48xlarge|
@@ -13881,7 +14141,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|32|
  |karpenter.k8s.aws/instance-memory|15360|
  |karpenter.k8s.aws/instance-size|large|
  |kubernetes.io/arch|amd64|
@@ -13905,7 +14164,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|80|
  |karpenter.k8s.aws/instance-memory|31232|
  |karpenter.k8s.aws/instance-size|xlarge|
  |kubernetes.io/arch|amd64|
@@ -13929,7 +14187,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|160|
  |karpenter.k8s.aws/instance-memory|62464|
  |karpenter.k8s.aws/instance-size|2xlarge|
  |kubernetes.io/arch|amd64|
@@ -13953,7 +14210,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|320|
  |karpenter.k8s.aws/instance-memory|124928|
  |karpenter.k8s.aws/instance-size|4xlarge|
  |kubernetes.io/arch|amd64|
@@ -13977,7 +14233,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r3|
  |karpenter.k8s.aws/instance-generation|3|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|640|
  |karpenter.k8s.aws/instance-memory|249856|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -14599,7 +14854,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|75|
+ |karpenter.k8s.aws/instance-local-nvme|75|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -14626,7 +14881,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|150|
+ |karpenter.k8s.aws/instance-local-nvme|150|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -14653,7 +14908,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|300|
+ |karpenter.k8s.aws/instance-local-nvme|300|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -14680,7 +14935,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -14707,7 +14962,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1200|
+ |karpenter.k8s.aws/instance-local-nvme|1200|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|7500|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -14734,7 +14989,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -14761,7 +15016,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2400|
+ |karpenter.k8s.aws/instance-local-nvme|2400|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -14788,7 +15043,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5ad|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -15051,7 +15306,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|75|
+ |karpenter.k8s.aws/instance-local-nvme|75|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -15078,7 +15333,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|150|
+ |karpenter.k8s.aws/instance-local-nvme|150|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -15105,7 +15360,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|300|
+ |karpenter.k8s.aws/instance-local-nvme|300|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -15132,7 +15387,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -15159,7 +15414,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1200|
+ |karpenter.k8s.aws/instance-local-nvme|1200|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -15186,7 +15441,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -15213,7 +15468,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2400|
+ |karpenter.k8s.aws/instance-local-nvme|2400|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -15240,7 +15495,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -15267,7 +15522,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5d|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -15295,7 +15550,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|75|
+ |karpenter.k8s.aws/instance-local-nvme|75|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|2100|
  |karpenter.k8s.aws/instance-size|large|
@@ -15322,7 +15577,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|150|
+ |karpenter.k8s.aws/instance-local-nvme|150|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|4100|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -15349,7 +15604,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|300|
+ |karpenter.k8s.aws/instance-local-nvme|300|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|8125|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -15376,7 +15631,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|600|
+ |karpenter.k8s.aws/instance-local-nvme|600|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|16250|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -15403,7 +15658,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1200|
+ |karpenter.k8s.aws/instance-local-nvme|1200|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -15430,7 +15685,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -15457,7 +15712,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2400|
+ |karpenter.k8s.aws/instance-local-nvme|2400|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|75000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -15484,7 +15739,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -15512,7 +15767,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r5dn|
  |karpenter.k8s.aws/instance-generation|5|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3600|
+ |karpenter.k8s.aws/instance-local-nvme|3600|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -16302,7 +16557,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|59|
+ |karpenter.k8s.aws/instance-local-nvme|59|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|500|
  |karpenter.k8s.aws/instance-size|medium|
@@ -16329,7 +16584,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -16356,7 +16611,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -16383,7 +16638,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -16410,7 +16665,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -16437,7 +16692,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -16464,7 +16719,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -16491,7 +16746,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -16518,7 +16773,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6gd|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -16809,7 +17064,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|781|
  |karpenter.k8s.aws/instance-size|large|
@@ -16836,7 +17091,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|1562|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -16863,7 +17118,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|3125|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -16890,7 +17145,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|6250|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -16917,7 +17172,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -16944,7 +17199,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|18750|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -16971,7 +17226,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -16998,7 +17253,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|5700|
+ |karpenter.k8s.aws/instance-local-nvme|5700|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|37500|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -17025,7 +17280,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|1048576|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -17053,7 +17308,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6id|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|1048576|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -17082,7 +17337,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|3125|
  |karpenter.k8s.aws/instance-size|large|
@@ -17109,7 +17364,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|6250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -17136,7 +17391,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -17163,7 +17418,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -17190,7 +17445,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -17217,7 +17472,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|75000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -17244,7 +17499,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -17271,7 +17526,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|5700|
+ |karpenter.k8s.aws/instance-local-nvme|5700|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|150000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -17298,7 +17553,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|1048576|
  |karpenter.k8s.aws/instance-network-bandwidth|200000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -17326,7 +17581,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r6idn|
  |karpenter.k8s.aws/instance-generation|6|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|1048576|
  |karpenter.k8s.aws/instance-network-bandwidth|200000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -18170,7 +18425,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|59|
+ |karpenter.k8s.aws/instance-local-nvme|59|
  |karpenter.k8s.aws/instance-memory|8192|
  |karpenter.k8s.aws/instance-network-bandwidth|520|
  |karpenter.k8s.aws/instance-size|medium|
@@ -18197,7 +18452,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|937|
  |karpenter.k8s.aws/instance-size|large|
@@ -18224,7 +18479,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|1876|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -18251,7 +18506,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|3750|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -18278,7 +18533,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|7500|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -18305,7 +18560,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|15000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -18332,7 +18587,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|22500|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -18359,7 +18614,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|30000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -18387,7 +18642,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|r7gd|
  |karpenter.k8s.aws/instance-generation|7|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|30000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -20002,7 +20257,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|trn1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|474|
+ |karpenter.k8s.aws/instance-local-nvme|474|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|3125|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -20033,7 +20288,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|trn1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|800000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -20066,7 +20321,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|trn1n|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|7600|
+ |karpenter.k8s.aws/instance-local-nvme|7600|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|1600000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -20470,7 +20725,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|1920|
  |karpenter.k8s.aws/instance-memory|999424|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -20496,7 +20750,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x1|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|3840|
  |karpenter.k8s.aws/instance-memory|1998848|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -20523,7 +20776,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x1e|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|120|
  |karpenter.k8s.aws/instance-memory|124928|
  |karpenter.k8s.aws/instance-network-bandwidth|625|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -20549,7 +20801,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x1e|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|240|
  |karpenter.k8s.aws/instance-memory|249856|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -20575,7 +20826,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x1e|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|480|
  |karpenter.k8s.aws/instance-memory|499712|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -20601,7 +20851,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x1e|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|960|
  |karpenter.k8s.aws/instance-memory|999424|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -20627,7 +20876,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x1e|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|1920|
  |karpenter.k8s.aws/instance-memory|1998848|
  |karpenter.k8s.aws/instance-network-bandwidth|10000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -20653,7 +20901,6 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x1e|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|xen|
- |karpenter.k8s.aws/instance-local-storage|3840|
  |karpenter.k8s.aws/instance-memory|3997696|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -20680,7 +20927,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2gd|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|59|
+ |karpenter.k8s.aws/instance-local-nvme|59|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|500|
  |karpenter.k8s.aws/instance-size|medium|
@@ -20707,7 +20954,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2gd|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -20734,7 +20981,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2gd|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -20761,7 +21008,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2gd|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|475|
+ |karpenter.k8s.aws/instance-local-nvme|475|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -20788,7 +21035,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2gd|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -20815,7 +21062,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2gd|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -20842,7 +21089,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2gd|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|786432|
  |karpenter.k8s.aws/instance-network-bandwidth|20000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -20869,7 +21116,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2gd|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|1048576|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -20896,7 +21143,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2gd|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|1048576|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -20924,7 +21171,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2idn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|1048576|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -20951,7 +21198,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2idn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|1572864|
  |karpenter.k8s.aws/instance-network-bandwidth|75000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -20978,7 +21225,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2idn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|2097152|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -21006,7 +21253,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2idn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|2097152|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -21035,7 +21282,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2iedn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|118|
+ |karpenter.k8s.aws/instance-local-nvme|118|
  |karpenter.k8s.aws/instance-memory|131072|
  |karpenter.k8s.aws/instance-network-bandwidth|1875|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -21062,7 +21309,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2iedn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|237|
+ |karpenter.k8s.aws/instance-local-nvme|237|
  |karpenter.k8s.aws/instance-memory|262144|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -21089,7 +21336,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2iedn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|475|
+ |karpenter.k8s.aws/instance-local-nvme|475|
  |karpenter.k8s.aws/instance-memory|524288|
  |karpenter.k8s.aws/instance-network-bandwidth|12500|
  |karpenter.k8s.aws/instance-size|4xlarge|
@@ -21116,7 +21363,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2iedn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|950|
+ |karpenter.k8s.aws/instance-local-nvme|950|
  |karpenter.k8s.aws/instance-memory|1048576|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|8xlarge|
@@ -21143,7 +21390,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2iedn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1900|
+ |karpenter.k8s.aws/instance-local-nvme|1900|
  |karpenter.k8s.aws/instance-memory|2097152|
  |karpenter.k8s.aws/instance-network-bandwidth|50000|
  |karpenter.k8s.aws/instance-size|16xlarge|
@@ -21170,7 +21417,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2iedn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|2850|
+ |karpenter.k8s.aws/instance-local-nvme|2850|
  |karpenter.k8s.aws/instance-memory|3145728|
  |karpenter.k8s.aws/instance-network-bandwidth|75000|
  |karpenter.k8s.aws/instance-size|24xlarge|
@@ -21197,7 +21444,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2iedn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|4194304|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|32xlarge|
@@ -21225,7 +21472,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|x2iedn|
  |karpenter.k8s.aws/instance-generation|2|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|3800|
+ |karpenter.k8s.aws/instance-local-nvme|3800|
  |karpenter.k8s.aws/instance-memory|4194304|
  |karpenter.k8s.aws/instance-network-bandwidth|100000|
  |karpenter.k8s.aws/instance-size|metal|
@@ -21400,323 +21647,6 @@ below are the resources available with some assumptions and after the instance o
  |pods|737|
  |vpc.amazonaws.com/efa|1|
  |vpc.amazonaws.com/pod-eni|107|
-## x8g Family
-### `x8g.medium`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|1|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-memory|16384|
- |karpenter.k8s.aws/instance-network-bandwidth|520|
- |karpenter.k8s.aws/instance-size|medium|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.medium|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|940m|
- |ephemeral-storage|17Gi|
- |memory|14653Mi|
- |pods|8|
- |vpc.amazonaws.com/pod-eni|4|
-### `x8g.large`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|2|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-memory|32768|
- |karpenter.k8s.aws/instance-network-bandwidth|937|
- |karpenter.k8s.aws/instance-size|large|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.large|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|1930m|
- |ephemeral-storage|17Gi|
- |memory|29577Mi|
- |pods|29|
- |vpc.amazonaws.com/pod-eni|9|
-### `x8g.xlarge`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|4|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-memory|65536|
- |karpenter.k8s.aws/instance-network-bandwidth|1876|
- |karpenter.k8s.aws/instance-size|xlarge|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.xlarge|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|3920m|
- |ephemeral-storage|17Gi|
- |memory|59568Mi|
- |pods|58|
- |vpc.amazonaws.com/pod-eni|18|
-### `x8g.2xlarge`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|8|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-memory|131072|
- |karpenter.k8s.aws/instance-network-bandwidth|3750|
- |karpenter.k8s.aws/instance-size|2xlarge|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.2xlarge|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|7910m|
- |ephemeral-storage|17Gi|
- |memory|120189Mi|
- |pods|58|
- |vpc.amazonaws.com/pod-eni|38|
-### `x8g.4xlarge`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|16|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-memory|262144|
- |karpenter.k8s.aws/instance-network-bandwidth|7500|
- |karpenter.k8s.aws/instance-size|4xlarge|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.4xlarge|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|15890m|
- |ephemeral-storage|17Gi|
- |memory|239495Mi|
- |pods|234|
- |vpc.amazonaws.com/pod-eni|54|
-### `x8g.8xlarge`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|32|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|10000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-memory|524288|
- |karpenter.k8s.aws/instance-network-bandwidth|15000|
- |karpenter.k8s.aws/instance-size|8xlarge|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.8xlarge|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|31850m|
- |ephemeral-storage|17Gi|
- |memory|481978Mi|
- |pods|234|
- |vpc.amazonaws.com/pod-eni|54|
-### `x8g.12xlarge`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|48|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|15000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-memory|786432|
- |karpenter.k8s.aws/instance-network-bandwidth|22500|
- |karpenter.k8s.aws/instance-size|12xlarge|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.12xlarge|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|47810m|
- |ephemeral-storage|17Gi|
- |memory|724461Mi|
- |pods|234|
- |vpc.amazonaws.com/pod-eni|54|
-### `x8g.16xlarge`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|64|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|20000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-memory|1048576|
- |karpenter.k8s.aws/instance-network-bandwidth|30000|
- |karpenter.k8s.aws/instance-size|16xlarge|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.16xlarge|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|63770m|
- |ephemeral-storage|17Gi|
- |memory|961411Mi|
- |pods|737|
- |vpc.amazonaws.com/pod-eni|107|
-### `x8g.24xlarge`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|96|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|30000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-memory|1572864|
- |karpenter.k8s.aws/instance-network-bandwidth|40000|
- |karpenter.k8s.aws/instance-size|24xlarge|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.24xlarge|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|95690m|
- |ephemeral-storage|17Gi|
- |memory|1446378Mi|
- |pods|737|
- |vpc.amazonaws.com/efa|1|
- |vpc.amazonaws.com/pod-eni|107|
-### `x8g.metal-24xl`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|96|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|30000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-memory|1572864|
- |karpenter.k8s.aws/instance-network-bandwidth|40000|
- |karpenter.k8s.aws/instance-size|metal-24xl|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.metal-24xl|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|95690m|
- |ephemeral-storage|17Gi|
- |memory|1446378Mi|
- |pods|737|
- |vpc.amazonaws.com/efa|1|
- |vpc.amazonaws.com/pod-eni|107|
-### `x8g.48xlarge`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|192|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|40000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-memory|3145728|
- |karpenter.k8s.aws/instance-network-bandwidth|50000|
- |karpenter.k8s.aws/instance-size|48xlarge|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.48xlarge|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|191450m|
- |ephemeral-storage|17Gi|
- |memory|2901277Mi|
- |pods|737|
- |vpc.amazonaws.com/efa|1|
- |vpc.amazonaws.com/pod-eni|107|
-### `x8g.metal-48xl`
-#### Labels
- | Label | Value |
- |--|--|
- |karpenter.k8s.aws/instance-category|x|
- |karpenter.k8s.aws/instance-cpu|192|
- |karpenter.k8s.aws/instance-cpu-manufacturer|aws|
- |karpenter.k8s.aws/instance-ebs-bandwidth|40000|
- |karpenter.k8s.aws/instance-encryption-in-transit-supported|true|
- |karpenter.k8s.aws/instance-family|x8g|
- |karpenter.k8s.aws/instance-generation|8|
- |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-memory|3145728|
- |karpenter.k8s.aws/instance-network-bandwidth|50000|
- |karpenter.k8s.aws/instance-size|metal-48xl|
- |kubernetes.io/arch|arm64|
- |kubernetes.io/os|linux|
- |node.kubernetes.io/instance-type|x8g.metal-48xl|
-#### Resources
- | Resource | Quantity |
- |--|--|
- |cpu|191450m|
- |ephemeral-storage|17Gi|
- |memory|2901277Mi|
- |pods|737|
- |vpc.amazonaws.com/efa|1|
- |vpc.amazonaws.com/pod-eni|107|
 ## z1d Family
 ### `z1d.large`
 #### Labels
@@ -21730,7 +21660,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|z1d|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|75|
+ |karpenter.k8s.aws/instance-local-nvme|75|
  |karpenter.k8s.aws/instance-memory|16384|
  |karpenter.k8s.aws/instance-network-bandwidth|750|
  |karpenter.k8s.aws/instance-size|large|
@@ -21757,7 +21687,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|z1d|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|150|
+ |karpenter.k8s.aws/instance-local-nvme|150|
  |karpenter.k8s.aws/instance-memory|32768|
  |karpenter.k8s.aws/instance-network-bandwidth|1250|
  |karpenter.k8s.aws/instance-size|xlarge|
@@ -21784,7 +21714,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|z1d|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|300|
+ |karpenter.k8s.aws/instance-local-nvme|300|
  |karpenter.k8s.aws/instance-memory|65536|
  |karpenter.k8s.aws/instance-network-bandwidth|2500|
  |karpenter.k8s.aws/instance-size|2xlarge|
@@ -21811,7 +21741,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|z1d|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|450|
+ |karpenter.k8s.aws/instance-local-nvme|450|
  |karpenter.k8s.aws/instance-memory|98304|
  |karpenter.k8s.aws/instance-network-bandwidth|5000|
  |karpenter.k8s.aws/instance-size|3xlarge|
@@ -21838,7 +21768,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|z1d|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|900|
+ |karpenter.k8s.aws/instance-local-nvme|900|
  |karpenter.k8s.aws/instance-memory|196608|
  |karpenter.k8s.aws/instance-network-bandwidth|12000|
  |karpenter.k8s.aws/instance-size|6xlarge|
@@ -21865,7 +21795,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|z1d|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor|nitro|
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|12xlarge|
@@ -21892,7 +21822,7 @@ below are the resources available with some assumptions and after the instance o
  |karpenter.k8s.aws/instance-family|z1d|
  |karpenter.k8s.aws/instance-generation|1|
  |karpenter.k8s.aws/instance-hypervisor||
- |karpenter.k8s.aws/instance-local-storage|1800|
+ |karpenter.k8s.aws/instance-local-nvme|1800|
  |karpenter.k8s.aws/instance-memory|393216|
  |karpenter.k8s.aws/instance-network-bandwidth|25000|
  |karpenter.k8s.aws/instance-size|metal|
